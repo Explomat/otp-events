@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { HashRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './ui/app';
+import configureStore from './store';
+import './css/material.font.css';
+import './css/material.min.css';
+import './css/global.css';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import 'semantic-ui-css/semantic.min.css';
+
+const store = configureStore();
+
+const render = () => (
+	<Provider store={store}>
+		<Router>
+			<App />
+		</Router>
+	</Provider>
+);
+
+ReactDOM.render(render(), document.getElementById('root'));
+
+

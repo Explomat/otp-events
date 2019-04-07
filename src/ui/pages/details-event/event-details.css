@@ -1,0 +1,32 @@
+.event-details {
+}
+
+.event-details__title {
+	width: 100%;
+}
+
+.event-details__back{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.event-details__comment {
+	margin-bottom: 16px;
+}
+.event-details__form{
+	padding: 16px 0 35px 0;
+}
+.event-details__status {
+	position: relative;
+	z-index: auto;
+	top: 8px;
+	margin-left: 16px;
+	display: block;
+	max-width: 30%;
+	color: rgba(255, 255, 255, 0.7);
+	background: rgba(23, 162,164, 0.9);
+	padding: 16px;
+	font-weight: 300;
+	font-size: 15px;
+}

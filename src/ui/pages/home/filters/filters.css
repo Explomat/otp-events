@@ -1,0 +1,38 @@
+.filters {
+	padding: 8px;
+	margin: 8px;
+}
+
+.filters__dropdown {
+	margin-right: 4px;
+	font-size: .85714286rem !important;
+}
+
+.filters__button-wrapper {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 8px;
+}
+
+.filters__button-wrapper--right {
+	float: right;
+	margin-right: 0px;
+}
+
+.filters__button {
+	padding: 8px 16px 8px 16px;
+}
+
+.filters__active-button--all {
+	background-color: #18652a !important;
+}
+.filters__active-button--self{
+	background-color: #b18500 !important;
+}
+.filters__active-button--plan{
+	background-color: #0a606d !important;
+}
+
+.filters__create-event{
+	float: right;
+}

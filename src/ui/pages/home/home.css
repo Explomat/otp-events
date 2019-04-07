@@ -1,0 +1,22 @@
+.home {
+	width: 1080px;
+}
+
+.home__not-found{
+	width: 100%;
+}
+
+.home__new-event {
+	float: right;
+}
+
+.home__create-icon{
+	position: absolute;
+	left: 8px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.home_create-text{
+	padding-left: 10px;
+}
