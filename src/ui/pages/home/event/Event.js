@@ -4,6 +4,7 @@ import { Popup, Icon } from 'semantic-ui-react'
 import cs from 'classnames';
 import PropTypes from 'prop-types';
 import { url } from '../../../../config';
+import toBoolean from '../../../utils/toBoolean';
 
 import './eventOfList.css';
 
@@ -14,7 +15,7 @@ class Event extends Component {
 
 		this.state = {
 			like_count: props.like_count,
-			is_liked: props.is_liked
+			is_liked: toBoolean(props.is_liked)
 		}
 		this.handleLike = this.handleLike.bind(this);
 	}
