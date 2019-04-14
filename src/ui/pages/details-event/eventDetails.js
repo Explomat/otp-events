@@ -124,7 +124,7 @@ class EventDetails extends Component {
 					/>
 				);
 
-				if (isAdmin){
+				if (isAdmin && status_id === 'project'){
 					buttons.push(
 						<Button key={1}
 							className='event-details__resolve'

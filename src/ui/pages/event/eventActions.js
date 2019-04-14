@@ -114,9 +114,9 @@ export function saveEvent(form, history){
 
 		fetch(path, {
 			method: 'POST',
-			headers: {  
+			/*headers: {  
 				'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'  
-			},
+			},*/
 			body: data
 		})
 		.then(resp => {
