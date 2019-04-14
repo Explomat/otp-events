@@ -60,7 +60,8 @@ function collaboratorsReducer(state=[], action) {
 
 export default function eventDetailsReducer(state={
 	collaborators: [],
-	comments: []
+	comments: [],
+	admins: []
 }, action){
 	switch(action.type) {
 
@@ -68,6 +69,14 @@ export default function eventDetailsReducer(state={
 			return {
 				...state,
 				...action.payload
+			}
+		}
+
+		case constants.EVENT_DETAILS_SET_STATUS: {
+			return {
+				...state,
+				status_id: action.payload.status_id,
+				status_name: action.payload.status_name
 			}
 		}
 

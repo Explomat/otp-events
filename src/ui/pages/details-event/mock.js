@@ -4,66 +4,103 @@ import uuid from '../../utils/uuid';
 
 const events = [
 	{
-		"id": "6673021011384420043",
+		"id": "6668962976716051403",
 		"cur_user_id": "6148914691236517121",
-		"title": "Event LIVE 2019",
-		"status_name": "plan",
-		"long_desc": "<span style='-webkit-text-stroke-width:0px; background-color:rgb(255, 255, 255); color:rgb(50, 49, 49); display:inline !important; float:none; font-family:arial,helvetica,sans-serif; font-size:13.2px; font-style:normal; font-variant-caps:normal; font-variant-ligatures:normal; font-weight:400; letter-spacing:normal; orphans:2; text-align:justify; text-decoration-color:initial; text-decoration-style:initial; text-indent:0px; text-transform:none; white-space:normal; widows:2; word-spacing:0px'>Форум для профессионалов ивент индустрии и их заказчиков. В рамках Форума Event LIVE будут предложены практические решения по организации мероприятий и пройдет обсуждение наиболее интересных реализованных кейсов. В качестве спикеров на Форум приглашены эксперты отрасли и представители компаний заказчиков.</span>",
-		"img": "/download_file.html?file_id=6673023098917492266",
-		"max_person_count": "7",
-		"start_date": "Tue, 21 May 2019 09:00:00 +0300",
-		"finish_date": "Wed, 22 May 2019 18:00:00 +0300",
-		"cost": "25000",
-		"city_id": "5667697629116916712",
-		"city": "Санкт-Петербург",
-		"subject_id": "Образование",
-		"address": "Санкт-Петербург, ул. Лодейнопольская, 5",
-		"phone_number": "84959804356",
-		"email": "user_007@gmail.com",
-		"event_admin_id": "6671540380842220396",
-		"event_admin_fullname": "Илларионова Галина Артемовна",
-		"event_admin_position": "Директор по управлению персоналом",
-		"event_admin_avatar": "/download_file.html?file_id=6671540961322951686",
-		"like_count": "1",
+		"user_role": "event_admin",
+		"title": "Речная прогулка по Москве реке",
+		"status_name": "Плнируется",
+		"status_id": "plan",
+		"long_desc": "Круиз через весь&nbsp;центр Москвы на комфортабельном, двухпалубном теплаходе &quot;МАЭСТРО&quot;. В программе мероприятия шикарный ужин, музыкальная программа и завораживающий вид&nbsp; с борта теплохода на достопримечательности Москвы.",
+		"img": "/download_file.html?file_id=6668970663716716859",
+		"max_person_count": "25",
+		"start_date": "Sat, 01 Jun 2019 16:00:00 +0300",
+		"finish_date": "Sat, 01 Jun 2019 19:00:00 +0300",
+		"cost": "150000",
+		"city_id": "5667697629116916688",
+		"city": "Москва",
+		"subject_id": "Развлечение",
+		"address": "г. Москва, Крымский Вал, 9",
+		"phone_number": "84967281726",
+		"email": "user_019@gmail.com",
+		"event_admin_id": "6671630922937078440",
+		"event_admin_fullname": "Антонова Елена Анатольевна",
+		"event_admin_position": "Начальник отдела",
+		"event_admin_avatar": "/download_file.html?file_id=6671631649276712429",
+		"like_count": "3",
 		"collaborators": [
 		{
-		"id": "6671534944450653272",
-		"fullname": "Рогожин Денис Александрович",
-		"is_confirm": "false",
-		"avatar": "/download_file.html?file_id=6671535838520757802"
+		  "id": "6671537774053763818",
+		  "fullname": "Павленко Ирина Леонидовна",
+		  "is_confirm": "true",
+		  "avatar": "/download_file.html?file_id=6671538400859850742"
 		},
 		{
-		"id": "6671628621533546494",
-		"fullname": "Гареев Давид Егорьевич",
-		"is_confirm": "false",
-		"avatar": "/download_file.html?file_id=6671629734139273426"
+		  "id": "6671536515542115698",
+		  "fullname": "Калугина Елена Руслановна",
+		  "is_confirm": "true",
+		  "avatar": "/download_file.html?file_id=6671537379586870665"
 		},
 		{
-		"id": "6671537774053763818",
-		"fullname": "Павленко Ирина Леонидовна",
-		"is_confirm": "false",
-		"avatar": "/download_file.html?file_id=6671538400859850742"
+		  "id": "6670724707302122721",
+		  "fullname": "Петров Петр Петрович",
+		  "is_confirm": "true",
+		  "avatar": "/download_file.html?file_id=6669106315989699280"
 		},
 		{
-		"id": "6671650616084082574",
-		"fullname": "Сахарова Елена Петровна",
-		"is_confirm": "false",
-		"avatar": "/download_file.html?file_id=6671651315566476911"
-		},
-		{
-		"id": "6671637644570346696",
-		"fullname": "Иванов Сергей Петрович",
-		"is_confirm": "false",
-		"avatar": "/download_file.html?file_id=6671638263452412220"
-		},
-		{
-		"id": "6671542723565534099",
-		"fullname": "Захарченко Антон Витальевич",
-		"is_confirm": "false",
-		"avatar": "/download_file.html?file_id=6671543380494324485"
+		  "id": "6148914691236517121",
+		  "fullname": "Иванов Иван Иванович",
+		  "is_confirm": "false",
+		  "avatar": "/download_file.html?file_id=6671540961322951686"
 		}
 		],
-		"comments": [],
+		"comments": [
+		{
+		  "id": "6677220343771366295",
+		  "user_id": "6148914691236517121",
+		  "avatar": "/download_file.html?file_id=6671540961322951686",
+		  "user_fullname": "Иванов Иван Иванович",
+		  "date": "Sun, 07 Apr 2019 21:25:10 +0300",
+		  "message": "fsfs"
+		}
+		],
+		"cities": [
+		{
+		  "id": "5667697629116916643",
+		  "name": "Абакан"
+		},
+		{
+		  "id": "5667697629116916644",
+		  "name": "Аксай"
+		},
+		{
+		  "id": "5667697629116916645",
+		  "name": "Актау"
+		},
+		{
+		  "id": "5667697629116916646",
+		  "name": "Актобе"
+		},
+		{
+		  "id": "5667697629116916647",
+		  "name": "Алматы"
+		},
+		{
+		  "id": "5667697629116916648",
+		  "name": "Архангельск"
+		},
+		{
+		  "id": "5667697629116916649",
+		  "name": "Астана"
+		}
+		],
+		"subjects": [
+			"Образование",
+			"Спорт",
+			"Здоровье",
+			"Путешествия, туризм",
+			"Культура",
+			"Развлечение"
+		]
 	}
 ]
 

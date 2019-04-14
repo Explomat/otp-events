@@ -3,6 +3,11 @@
 	max-width: 650px;
 }
 
+.event-new__form-field{
+    visibility: hidden;
+    position: absolute;
+}
+
 .event-new__back {
 	margin-bottom: 24px !important;
 }

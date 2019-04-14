@@ -5,6 +5,8 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "explomat-react-scripts": "2.1.10",
+    "formdata-polyfill": "^3.0.17",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-datepicker": "^2.3.0",
     "react-dom": "^16.8.6",

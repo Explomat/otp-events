@@ -1,7 +1,7 @@
 import { url } from '../../../config';
 import createRemoteActions from '../../utils/createRemoteActions';
 import { omit } from 'lodash';
-
+require('formdata-polyfill');
 
 export const constants = {
 	'NEW_EVENT_CHANGE_TITLE': 'NEW_EVENT_CHANGE_TITLE',
@@ -13,6 +13,7 @@ export const constants = {
 	'NEW_EVENT_CHANGE_SUBJECT': 'NEW_EVENT_CHANGE_SUBJECT',
 	'NEW_EVENT_CHANGE_MAX_PERSONS': 'NEW_EVENT_CHANGE_MAX_PERSONS',
 	'NEW_EVENT_CHANGE_COST': 'NEW_EVENT_CHANGE_COST',
+	'NEW_EVENT_CHANGE_ADDRESS': 'NEW_EVENT_CHANGE_ADDRESS',
 	...createRemoteActions('GET_EVENT_CREATE')
 }
 
@@ -58,6 +59,13 @@ export function onChangeCity(event, data){
 	}
 }
 
+export function onChangeAddress(event, data){
+	return {
+		type: constants.NEW_EVENT_CHANGE_ADDRESS,
+		payload: data.value
+	}
+}
+
 export function onChangeSubject(event, data){
 	return {
 		type: constants.NEW_EVENT_CHANGE_SUBJECT,
@@ -91,20 +99,25 @@ export function onChangeCost(event, data){
 	}
 }
 
-export function saveEvent(history){
+export function saveEvent(form, history){
 	return (dispatch, getState) => {
-		const { event } = getState();
+		/*const { event } = getState();
 
-		const data = omit(event, [ 'cities', 'subjects' ]);
+		const data = omit(event, [ 'cities', 'subjects' ]);*/
 
 		const path = url.createPath({
 			server_name: 'events',
 			action_name: 'SaveEvent'
 		});
 
+		const data = new FormData(form);
+
 		fetch(path, {
 			method: 'POST',
-			body: JSON.stringify(data)
+			headers: {  
+				'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'  
+			},
+			body: data
 		})
 		.then(resp => {
 			return resp.json();
@@ -178,8 +191,8 @@ export function getData(eventId){
 				console.log(e.message);
 			});
 		}
-
-		/*dispatch({
+/*
+		dispatch({
 			type: constants.GET_EVENT_CREATE_SUCCESS,
 			payload: {
 				title: 'test',

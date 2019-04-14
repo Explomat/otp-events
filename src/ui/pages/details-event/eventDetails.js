@@ -8,7 +8,9 @@ import {
 	addComment,
 	editComment,
 	respondParticipiant,
-	refuseParticipiant
+	refuseParticipiant,
+	resolveEvent,
+	rejectEvent
 } from './eventDetailsActions';
 import {
 	Icon,
@@ -35,7 +37,8 @@ class EventDetails extends Component {
 		super(props);
 
 		this.state = {
-			comment: ''
+			comment: '',
+			isEditCommentNow: false
 		}
 
 		this.handleChangeNewComment = this.handleChangeNewComment.bind(this);
@@ -55,7 +58,8 @@ class EventDetails extends Component {
 	handeShowEditCommentForm(commentId, message) {
 		this.setState({
 			[`comment_${commentId}`]: true,
-			[`commentValue_${commentId}`]: message
+			[`commentValue_${commentId}`]: message,
+			isEditCommentNow: true
 		});
 	}
 
@@ -78,7 +82,8 @@ class EventDetails extends Component {
 		e.preventDefault();
 		submitComment(id, commentId, this.state[`commentValue_${commentId}`]);
 		this.setState({
-			[`comment_${commentId}`]: false
+			[`comment_${commentId}`]: false,
+			isEditCommentNow: false
 		});
 	}
 
@@ -92,6 +97,50 @@ class EventDetails extends Component {
 		});
 	}
 
+	_adminButtons(){
+		const { id, status_id, onResolveEvent, onRejectEvent, history, user_role } = this.props;
+		const buttons = [];
+		const isEventAdmin = user_role === 'event_admin';
+		const isAdmin = user_role === 'admin';
+
+		if (isAdmin || isEventAdmin){
+			if (status_id === 'project' || status_id === 'plan'){
+				buttons.push(
+					<Button key={2}
+						className='event-details__reject'
+						size='small'
+						secondary
+						onClick={onRejectEvent}
+						icon='close'
+						content='Отменить'
+					/>,
+					<Button key={3}
+						className='event-details__reject'
+						size='small'
+						color='red'
+						onClick={() => history.push(`/event/edit/${id}`)}
+						icon='pencil alternate'
+						content='Редактировать'
+					/>
+				);
+
+				if (isAdmin){
+					buttons.push(
+						<Button key={1}
+							className='event-details__resolve'
+							size='mini'
+							primary
+							onClick={onResolveEvent}
+							icon='check'
+							content='Подтвердить'
+						/>
+					);
+				}
+			}
+		}
+		return buttons;
+	}
+
 	componentDidMount(){
 		this.props.loadEvent();
 	}
@@ -101,7 +150,7 @@ class EventDetails extends Component {
 			history,
 			id,
 			cur_user_id,
-			status_id,
+			admins,
 			status_name,
 			title,
 			long_desc,
@@ -128,7 +177,7 @@ class EventDetails extends Component {
 			onRespondParticipiant,
 			onRefuseParticipiant
 		} = this.props;
-		const { comment } = this.state;
+		const { comment, isEditCommentNow } = this.state;
 
 		const styles = img ? { backgroundImage: `url(${img})` } : {};
 
@@ -136,15 +185,18 @@ class EventDetails extends Component {
 			<div className='event-details'>
 				<Button
 					className='event-details__back'
-					size='tiny'
+					size='small'
 					primary
 					icon
-					size='large'
+					labelPosition='left'
 					onClick={() => history.push('/')}
 				>
-					К списку
+					Назад
 					<Icon name='arrow left' />
 				</Button>
+				<Button.Group className='event-details__admin-buttons' size='mini'>
+					{this._adminButtons()}
+				</Button.Group>
 				<div
 					className='mdl-layout__header mdl-layout__header--scroll otp-layout__header otp-layout__header--transparent mdl-color--grey-400 mdl-shadow--4dp'
 					style={styles}
@@ -313,17 +365,18 @@ class EventDetails extends Component {
 										))
 									}
 
-									<Form reply onSubmit={this.handleSubmitNewComment}>
+									{!isEditCommentNow && <Form reply onSubmit={this.handleSubmitNewComment}>
 										<Form.TextArea name='comment' value={comment} onChange={this.handleChangeNewComment}/>
 										<Button
 											size='tiny'
+											disabled={comment.trim() === ''}
 											content='Добавить комментарий'
 											labelPosition='left'
 											icon='edit'
 											primary
 											floated='right'
 										/>
-									</Form>
+									</Form>}
 									</Comment.Group>
 							</Grid.Column>
 						</Grid.Row>
@@ -348,7 +401,9 @@ const mapDispatchProps = (dispatch, ownProps) => {
 		submitNewComment: (eventId, message) => dispatch(addComment(eventId, message)),
 		submitComment: (eventId, commentId, message) => dispatch(editComment(eventId, commentId, message)),
 		onRespondParticipiant: () => dispatch(respondParticipiant()),
-		onRefuseParticipiant: () => dispatch(refuseParticipiant())
+		onRefuseParticipiant: () => dispatch(refuseParticipiant()),
+		onResolveEvent: () => dispatch(resolveEvent()),
+		onRejectEvent: () => dispatch(rejectEvent())
 	}
 }
 

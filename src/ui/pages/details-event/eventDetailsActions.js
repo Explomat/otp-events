@@ -1,6 +1,6 @@
 import { url } from '../../../config';
 import createRemoteActions from '../../utils/createRemoteActions';
-//import mock, { setParticipiantStatusMock, removeCommentMock, setCommentMock } from './mock';
+import mock, { setParticipiantStatusMock, removeCommentMock, setCommentMock } from './mock';
 
 export const constants = {
 	...createRemoteActions([
@@ -11,7 +11,8 @@ export const constants = {
 		'EDIT_EVENT_DETAILS_COMMENT',
 		'RESPOND_EVENT_DETAILS_PARTICIPANT',
 		'REFUSE_EVENT_DETAILS_PARTICIPANT'
-	])
+	]),
+	'EVENT_DETAILS_SET_STATUS': 'EVENT_DETAILS_SET_STATUS'
 }
 
 
@@ -47,6 +48,84 @@ export function getEventDetails(id){
 				payload: { ...mock }
 			});
 		}, 300)*/
+	}
+}
+
+export function resolveEvent(){
+	return (dispatch, getState) => {
+		const { eventDetails } = getState();
+
+		const path = url.createPath({
+			server_name: 'events',
+			action_name: 'ResolveEvent'
+		});
+
+		fetch(path, {
+			method: 'POST',
+			body: JSON.stringify({
+				id: eventDetails.id
+			})
+		})
+		.then(resp => {
+			return resp.json();
+		})
+		.then(data => {
+			if (data.error){
+				//dispatch(error(data.error));
+				console.log(data.error);
+			} else {
+				/*dispatch({
+					type: constants.RESOLVE_EVENT_DETAILS_SUCCESS,
+					payload: data.status_id
+				});*/
+				dispatch({
+					type: constants.EVENT_DETAILS_SET_STATUS,
+					payload: data
+				});
+			}
+		}).catch(e => {
+			//dispatch(error(e.message));
+			console.log(e.message);
+		});
+	}
+}
+
+export function rejectEvent(){
+	return (dispatch, getState) => {
+		const { eventDetails } = getState();
+
+		const path = url.createPath({
+			server_name: 'events',
+			action_name: 'RejectEvent'
+		});
+
+		fetch(path, {
+			method: 'POST',
+			body: JSON.stringify({
+				id: eventDetails.id
+			})
+		})
+		.then(resp => {
+			return resp.json();
+		})
+		.then(data => {
+			if (data.error){
+				//dispatch(error(data.error));
+				console.log(data.error);
+			} else {
+				/*dispatch({
+					type: constants.REJECT_EVENT_DETAILS_SUCCESS,
+					payload: data
+				});*/
+				dispatch({
+					type: constants.EVENT_DETAILS_SET_STATUS,
+					payload: data
+				});
+			}
+		}).catch(e => {
+			//dispatch(error(e.message));
+			console.log(e.message);
+		});
 	}
 }
 
@@ -157,8 +236,10 @@ export function setParticipiantStatus(userId, isConfirm){
 			//dispatch(error(e.message));
 			console.error(e.message);
 		});
-		/*setTimeout(() => {
-			setParticipiantStatusMock(id, userId, isConfirm);
+
+		/*const { eventDetails } = getState();
+		setTimeout(() => {
+			setParticipiantStatusMock(eventDetails.id, userId, isConfirm);
 			dispatch({
 				type: constants.SET_EVENT_DETAILS_PARTICIPANT_STATUS_SUCCESS,
 				payload: {

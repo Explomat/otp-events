@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from './eventActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import moment from 'moment';
 
 import './event.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -19,10 +20,17 @@ class Event extends Component {
 		super(props);
 
 		this.state = {
-			isShowWarning: false
+			isShowWarning: false,
+			fileName: ''
 		}
 
+		this.formRef = React.createRef();
+
 		this.handleSave = this.handleSave.bind(this);
+		this.onChangeRawStartDate = this.onChangeRawStartDate.bind(this);
+		this.onChangeRawFinishDate = this.onChangeRawFinishDate.bind(this);
+		this.handleChangeFile = this.handleChangeFile.bind(this);
+		this.dateFormat = 'd.MM.yyyy, HH:mm';
 	}
 
 	_isFormFilled(){
@@ -38,14 +46,15 @@ class Event extends Component {
 			start_date,
 			finish_date
 		} = this.props;
+		//const { fileName } = this.state;
 		return (
 			title.trim() !== '' &&
 			long_desc.trim() !== '' &&
 			short_desc.trim() !== '' &&
 			address.trim() !== '' &&
 			city_id.trim() !== '' &&
-			max_person_count.trim() !== '' &&
-			cost.trim() !== '' &&
+			max_person_count !== '' &&
+			cost !== '' &&
 			start_date !== null &&
 			finish_date !== null
 		);
@@ -56,15 +65,34 @@ class Event extends Component {
 		this.props.getData(match.params.permalink);
 	}
 
+	handleChangeFile(e) {
+		this.setState({
+			fileName: e.target.value
+		});
+	}
+
 	handleSave(){
 		if (this._isFormFilled()){
-			this.props.onSaveEvent();
+			this.props.onSaveEvent(document.getElementById('event-new_form'));
 		} else {
 			this.setState({
 				isShowWarning: true
 			});
 		}
 	}
+
+	onChangeRawStartDate(e){
+		if (moment(e.target.value, this.dateFormat).isValid()){
+			this.props.onChangeStartDate(e.target.value);
+		}
+	}
+
+	onChangeRawFinishDate(e){
+		if (moment(e.target.value, this.dateFormat).isValid()){
+			this.props.onChangeFinishDate(e.target.value);
+		}
+	}
+
 
 	render(){
 		const {
@@ -75,6 +103,7 @@ class Event extends Component {
 			onChangeStartDate,
 			onChangeFinishDate,
 			onChangeCity,
+			onChangeAddress,
 			onChangeSubject,
 			onChangeMaxPersons,
 			onChangeCost,
@@ -93,7 +122,7 @@ class Event extends Component {
 			subjects
 		} = this.props;
 
-		const { isShowWarning } = this.state;
+		const { isShowWarning, fileName } = this.state;
 		return (
 			<div className='event-new'>
 				<Button
@@ -112,10 +141,11 @@ class Event extends Component {
 					header='Создание мероприятия'
 					content='Заполните форму по вашим критериям'
 				/>
-				<Form className='attached fluid segment'>
+				<Form id='event-new_form' className='attached fluid segment' encType='multipart/form-data'>
 					<Form.Field required>
 						<Label>Название *</Label>
 						<Input
+							name='title'
 							placeholder='Введите название мероприятия'
 							value={title}
 							onChange={onChangeTitle}
@@ -124,6 +154,7 @@ class Event extends Component {
 					<Form.Field required>
 						<Label>Полное описание *</Label>
 						 <TextArea
+						 	name='long_desc'
 						 	placeholder='Опишите подробнее мероприятие'
 						 	value={long_desc}
 						 	style={{ minHeight: 100 }}
@@ -133,6 +164,7 @@ class Event extends Component {
 					<Form.Field>
 						<Label>Краткое описание *</Label>
 						 <TextArea
+						 	name='short_desc'
 						 	placeholder='Опишите коротко мероприятие'
 						 	value={short_desc}
 						 	style={{ minHeight: 100 }}
@@ -148,15 +180,18 @@ class Event extends Component {
 									size='large'
 								/>
 								<DatePicker
+									name='start_date'
 									locale={ru}
 									selected={start_date}
 									showTimeSelect
 									timeIntervals={10}
 			    					timeFormat='HH:mm'
-			    					dateFormat='d MMMM, HH:mm'
+			    					dateFormat={this.dateFormat}
 			    					timeCaption='время'
 			    					placeholderText='Дата начала'
 			    					onChange={onChangeStartDate}
+			    					onChangeRaw={this.onChangeRawStartDate}
+			    					disabledKeyboardNavigation
 								/>
 						</Form.Field>
 						<Form.Field>
@@ -167,21 +202,25 @@ class Event extends Component {
 									size='large'
 								/>
 								<DatePicker
+									name='finish_date'
 									locale={ru}
 									selected={finish_date}
 									showTimeSelect
 									timeIntervals={10}
 			    					timeFormat='HH:mm'
-			    					dateFormat='d MMMM, HH:mm'
+			    					dateFormat={this.dateFormat}
 			    					timeCaption='время'
 			    					placeholderText='Дата окончания'
 			    					onChange={onChangeFinishDate}
+			    					onChangeRaw={this.onChangeRawFinishDate}
+			    					disabledKeyboardNavigation
 								/>
 						</Form.Field>
 					</Form.Group>
 					<Form.Group widths='equal'>
 						<Form.Field required>
 							<Label>Город *</Label>
+							<input readOnly className='event-new__form-field' type='text' name='city_id' value={city_id} />
 							<Dropdown
 								placeholder='Выберите город'
 								upward
@@ -194,11 +233,12 @@ class Event extends Component {
 						</Form.Field>
 						<Form.Field required>
 							<Label>Адрес *</Label>
-							<Input  placeholder='Введите адрес' />
+							<Input type='text' name='address' placeholder='Введите адрес' value={address} onChange={onChangeAddress}/>
 						</Form.Field>
 					</Form.Group>
 					<Form.Field>
 						<Label>Тематика проведения *</Label>
+						<input readOnly className='event-new__form-field' type='text' name='subject_id' value={subject_id} />
 						<Dropdown
 							placeholder='Выберите тематику'
 							upward
@@ -211,8 +251,9 @@ class Event extends Component {
 					</Form.Field>
 					<Form.Group widths='equal'>
 						<Form.Field>
-							<Label>Кол-во участников *</Label>
+							<Label>Кол-во участников (0 - неограниченно) *</Label>
 							<Input
+								name='max_person_count'
 								placeholder='Введите кол-во участников'
 								type='text'
 								onChange={onChangeMaxPersons}
@@ -220,8 +261,9 @@ class Event extends Component {
 							/>
 						</Form.Field>
 						<Form.Field>
-							<Label>Стоимость *</Label>
+							<Label>Стоимость (0 - бесплатно) *</Label>
 							<Input
+								name='cost'
 								action={{ icon: 'ruble sign' }}
 								labelPosition='right'
 								placeholder='Введите стоимость'
@@ -234,8 +276,8 @@ class Event extends Component {
 					<Form.Field>
 						<div className='event-new__file_upload'>
 							<Button size='tiny'>Выберите изображение</Button>
-							<div className='event-new__file_upload-name'>Файл не выбран</div>
-							<input type='file' accept='image/*'/>
+							<div className='event-new__file_upload-name'>{fileName || 'Файл не выбран'}</div>
+							<input type='file' name='upload_file' accept='image/*' onChange={this.handleChangeFile}/>
 						</div>
 					</Form.Field>
 					<Button
@@ -266,7 +308,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchProps = (dispatch, ownProps) => {
 	return {
 		...bindActionCreators(actions, dispatch),
-		onSaveEvent: () => dispatch(actions.saveEvent(ownProps.history))
+		onSaveEvent: (formRef) => dispatch(actions.saveEvent(formRef, ownProps.history))
 	}
 }
 

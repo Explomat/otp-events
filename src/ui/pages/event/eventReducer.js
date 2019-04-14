@@ -80,6 +80,13 @@ export default function eventNewReducer(state = {
 			}
 		}
 
+		case constants.NEW_EVENT_CHANGE_ADDRESS: {
+			return {
+				...state,
+				address: action.payload
+			}
+		}
+
 		case constants.NEW_EVENT_CHANGE_SUBJECT: {
 			return {
 				...state,

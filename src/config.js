@@ -19,7 +19,10 @@ addServer({ id: '6668987061819174354', name: 'events' })
 		'ParticipiantStatus',
 		'NewParticipiant',
 		'Like',
-		'SaveEvent'
+		'SaveEvent',
+		'Refuse',
+		'ResolveEvent',
+		'RejectEvent'
 	]
 );
 

@@ -1,12 +1,18 @@
 .event-details {
 }
 
+.event-details__admin-buttons{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
 .event-details__title {
 	width: 100%;
 }
 
 .event-details__back{
-	position: absolute;
+	position: absolute !important;
 	top: 0;
 	left: 0;
 }
