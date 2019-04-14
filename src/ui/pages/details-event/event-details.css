@@ -1,4 +1,5 @@
 .event-details {
+	position: relative;
 }
 
 .event-details__admin-buttons{
