@@ -30,7 +30,7 @@ class Event extends Component {
 		this.onChangeRawStartDate = this.onChangeRawStartDate.bind(this);
 		this.onChangeRawFinishDate = this.onChangeRawFinishDate.bind(this);
 		this.handleChangeFile = this.handleChangeFile.bind(this);
-		this.dateFormat = 'd.MM.yyyy, HH:mm';
+		this.dateFormat = 'd.MM.yyyy, hh:mm';
 	}
 
 	_isFormFilled(){
@@ -108,6 +108,7 @@ class Event extends Component {
 			onChangeMaxPersons,
 			onChangeCost,
 			onSaveEvent,
+			id,
 			title,
 			long_desc,
 			short_desc,
@@ -138,10 +139,13 @@ class Event extends Component {
 				</Button>
 				<Message
 					attached
-					header='Создание мероприятия'
+					header='Создание/Редактирование мероприятия'
 					content='Заполните форму по вашим критериям'
 				/>
 				<Form id='event-new_form' className='attached fluid segment' encType='multipart/form-data'>
+					<Form.Field>
+						<input type='text' className='event-new__form-field' name='id' value={id} readOnly />
+					</Form.Field>
 					<Form.Field required>
 						<Label>Название *</Label>
 						<Input

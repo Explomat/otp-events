@@ -1,6 +1,7 @@
 import { constants } from './eventActions';
 
 export default function eventNewReducer(state = {
+	id: '',
 	title: '',
 	long_desc: '',
 	short_desc: '',

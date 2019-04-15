@@ -151,6 +151,7 @@ class EventDetails extends Component {
 			id,
 			cur_user_id,
 			admins,
+			status_id,
 			status_name,
 			title,
 			long_desc,
@@ -236,7 +237,7 @@ class EventDetails extends Component {
 										) : (
 										<span>Стоимость не указана</span>
 									)}
-									{find(collaborators, { id: cur_user_id }) ? 
+									{status_id === 'plan' && find(collaborators, { id: cur_user_id }) ? 
 										(
 										 	<Button
 												floated='right'

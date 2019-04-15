@@ -101,9 +101,9 @@ export function onChangeCost(event, data){
 
 export function saveEvent(form, history){
 	return (dispatch, getState) => {
-		/*const { event } = getState();
+		//const { event } = getState();
 
-		const data = omit(event, [ 'cities', 'subjects' ]);*/
+		//const data = omit(event, [ 'cities', 'subjects' ]);
 
 		const path = url.createPath({
 			server_name: 'events',
@@ -157,7 +157,10 @@ export function getData(eventId){
 				} else {
 					dispatch({
 						type: constants.GET_EVENT_CREATE_SUCCESS,
-						payload: data
+						payload: {
+							id: eventId,
+							...data
+						}
 					});
 				}
 			})
