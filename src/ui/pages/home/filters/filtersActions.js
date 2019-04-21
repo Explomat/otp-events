@@ -3,6 +3,7 @@ import { constants as homeConstants } from '../homeActions';
 
 export const constants = {
 	'CHANGE_SEARCH': 'CHANGE_SEARCH',
+	'CHANGE_PAGE': 'CHANGE_PAGE',
 	'CHANGE_STATUS': 'CHANGE_STATUS',
 	'CHANGE_SUBJECT': 'CHANGE_SUBJECT',
 	'CHANGE_CITY': 'CHANGE_CITY',
@@ -31,6 +32,13 @@ export function changeSearch(value){
 	}
 }
 
+export function changePage(value){
+	return {
+		type: constants.CHANGE_PAGE,
+		payload: value
+	}
+}
+
 export function changeSubject(value){
 	return {
 		type: constants.CHANGE_SUBJECT,
@@ -55,14 +63,16 @@ export function clearFields(){
 export function search(){
 	return (dispatch, getState) => {
 		const { home } = getState();
+		const filters = home.ui.filters;
 
 		const path = url.createPath({
 			server_name: 'events',
 			action_name: 'Data',
-			status: home.ui.filters.status,
-			search: home.ui.filters.search,
-			city: home.ui.filters.city,
-			subject: home.ui.filters.subject
+			status: filters.status,
+			search: filters.search,
+			page: filters.page,
+			city: filters.city,
+			subject: filters.subject
 
 		});
 		fetch(path)

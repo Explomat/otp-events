@@ -14,7 +14,15 @@ export const constants = {
 	'NEW_EVENT_CHANGE_MAX_PERSONS': 'NEW_EVENT_CHANGE_MAX_PERSONS',
 	'NEW_EVENT_CHANGE_COST': 'NEW_EVENT_CHANGE_COST',
 	'NEW_EVENT_CHANGE_ADDRESS': 'NEW_EVENT_CHANGE_ADDRESS',
+	'NEW_EVENT_LOADING': 'NEW_EVENT_LOADING',
 	...createRemoteActions('GET_EVENT_CREATE')
+}
+
+function loading(isLoading){
+	return {
+		type: constants.NEW_EVENT_LOADING,
+		payload: isLoading
+	}
 }
 
 export function onChangeTitle(event, data){
@@ -112,6 +120,7 @@ export function saveEvent(form, history){
 
 		const data = new FormData(form);
 
+		dispatch(loading(true));
 		fetch(path, {
 			method: 'POST',
 			/*headers: {  
@@ -127,6 +136,7 @@ export function saveEvent(form, history){
 				//dispatch(error(data.error));
 				console.log(data.error);
 			} else {
+				dispatch(loading(false));
 				history.push(`/event/details/${data.id}`);
 			}
 		})
@@ -146,6 +156,7 @@ export function getData(eventId){
 				id: eventId
 			});
 
+			dispatch(loading(true));
 			fetch(path)
 			.then(resp => {
 				return resp.json();
@@ -155,6 +166,7 @@ export function getData(eventId){
 					//dispatch(error(data.error));
 					console.log(data.error);
 				} else {
+					dispatch(loading(false));
 					dispatch({
 						type: constants.GET_EVENT_CREATE_SUCCESS,
 						payload: {
@@ -174,6 +186,7 @@ export function getData(eventId){
 				action_name: 'DataForCreate'
 			});
 
+			dispatch(loading(true));
 			fetch(path, { method: 'POST' })
 			.then(resp => {
 				return resp.json();
@@ -183,6 +196,7 @@ export function getData(eventId){
 					//dispatch(error(data.error));
 					console.log(data.error);
 				} else {
+					dispatch(loading(false));
 					dispatch({
 						type: constants.GET_EVENT_CREATE_SUCCESS,
 						payload: data
@@ -194,52 +208,56 @@ export function getData(eventId){
 				console.log(e.message);
 			});
 		}
-/*
-		dispatch({
-			type: constants.GET_EVENT_CREATE_SUCCESS,
-			payload: {
-				title: 'test',
-				long_desc: 'long descr',
-				short_desc: 'short descr',
-				start_date: 'Wed, 10 Apr 2019 09:00:00 +0300',
-				finish_date: 'Wed, 10 Apr 2019 09:00:00 +0300',
-				city: 'Абакан',
-				city_id: '5667697629116916643',
-				address: 'test',
-				subject_id: 'Спорт',
-				max_person_count: 10,
-				cost: 100,
-				cities: [
-					{
-						"id": "5667697629116916643",
-						"name": "Абакан"
-					},
-					{
-						"id": "5667697629116916644",
-						"name": "Аксай"
-					},
-					{
-						"id": "5667697629116916645",
-						"name": "Актау"
-					},
-					{
-						"id": "5667697629116916646",
-						"name": "Актобе"
-					},
-					{
-						"id": "5667697629116916647",
-						"name": "Алматы"
-					}
-    			],
-				subjects: [
-					"Образование",
-					"Спорт",
-					"Здоровье",
-					"Путешествия, туризм",
-					"Культура",
-					"Развлечение"
-				]
-			}
-		});*/
+
+		/*dispatch(loading(true));
+		setTimeout(() => {
+			dispatch(loading(false));
+			dispatch({
+				type: constants.GET_EVENT_CREATE_SUCCESS,
+				payload: {
+					title: 'test',
+					long_desc: 'long descr',
+					short_desc: 'short descr',
+					start_date: 'Wed, 10 Apr 2019 09:00:00 +0300',
+					finish_date: 'Wed, 10 Apr 2019 09:00:00 +0300',
+					city: 'Абакан',
+					city_id: '5667697629116916643',
+					address: 'test',
+					subject_id: 'Спорт',
+					max_person_count: 10,
+					cost: 100,
+					cities: [
+						{
+							"id": "5667697629116916643",
+							"name": "Абакан"
+						},
+						{
+							"id": "5667697629116916644",
+							"name": "Аксай"
+						},
+						{
+							"id": "5667697629116916645",
+							"name": "Актау"
+						},
+						{
+							"id": "5667697629116916646",
+							"name": "Актобе"
+						},
+						{
+							"id": "5667697629116916647",
+							"name": "Алматы"
+						}
+	    			],
+					subjects: [
+						"Образование",
+						"Спорт",
+						"Здоровье",
+						"Путешествия, туризм",
+						"Культура",
+						"Развлечение"
+					]
+				}
+			});
+		}, 1000);*/
 	};
 }

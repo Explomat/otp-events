@@ -12,9 +12,16 @@ export const constants = {
 		'RESPOND_EVENT_DETAILS_PARTICIPANT',
 		'REFUSE_EVENT_DETAILS_PARTICIPANT'
 	]),
-	'EVENT_DETAILS_SET_STATUS': 'EVENT_DETAILS_SET_STATUS'
+	'EVENT_DETAILS_SET_STATUS': 'EVENT_DETAILS_SET_STATUS',
+	'EVENT_DETAILS_LOADING': 'EVENT_DETAILS_LOADING'
 }
 
+function loading(isLoading){
+	return {
+		type: constants.EVENT_DETAILS_LOADING,
+		payload: isLoading
+	}
+}
 
 export function getEventDetails(id){
 	return dispatch => {
@@ -24,6 +31,7 @@ export function getEventDetails(id){
 			id
 		});
 
+		dispatch(loading(true));
 		fetch(path)
 		.then(resp => {
 			return resp.json();
@@ -33,6 +41,7 @@ export function getEventDetails(id){
 				//dispatch(error(data.error));
 				console.log(data.error);
 			} else {
+				dispatch(loading(false));
 				dispatch({
 					type: constants.GET_EVENT_DETAILS_INITIAL_DATA_SUCCESS,
 					payload: data
@@ -42,12 +51,17 @@ export function getEventDetails(id){
 			//dispatch(error(e.message));
 			console.log(e.message);
 		});
-		/*setTimeout(() => {
+
+
+		
+		/*dispatch(loading(true));
+		setTimeout(() => {
+			dispatch(loading(false));
 			dispatch({
 				type: constants.GET_EVENT_DETAILS_INITIAL_DATA_SUCCESS,
 				payload: { ...mock }
 			});
-		}, 300)*/
+		}, 300);*/
 	}
 }
 

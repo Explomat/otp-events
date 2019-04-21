@@ -1,7 +1,10 @@
 import { constants } from './filtersActions';
+import { constants as homeConstatns } from '../homeActions';
 
 const initialState = {
 	search: '',
+	page: 1,
+	pagesCount: 1,
 	status: 'all',
 	subject: 'all',
 	city: 'all'
@@ -9,6 +12,13 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
 	switch(action.type) {
+
+		case homeConstatns.GET_INITIAL_DATA_SUCCESS: {
+			return {
+				...state,
+				pagesCount: action.payload.pagesCount
+			}
+		}
 
 		case constants.CLEAR_FIELDS: {
 			return {
@@ -20,6 +30,13 @@ export default function reducer(state = initialState, action) {
 			return {
 				...state,
 				search: action.payload
+			}
+		}
+
+		case constants.CHANGE_PAGE: {
+			return {
+				...state,
+				page: action.payload
 			}
 		}
 

@@ -58,10 +58,29 @@ function collaboratorsReducer(state=[], action) {
 	}
 }
 
+function uiReducer(state = {
+	isLoading: false
+}, action){
+	switch(action.type) {
+
+		case constants.EVENT_DETAILS_LOADING: {
+			return {
+				...state,
+				isLoading: action.payload
+			}
+		}
+
+		default: return state;
+	}
+}
+
 export default function eventDetailsReducer(state={
 	collaborators: [],
 	comments: [],
-	admins: []
+	admins: [],
+	ui: {
+		isLoading: false
+	}
 }, action){
 	switch(action.type) {
 
@@ -98,6 +117,13 @@ export default function eventDetailsReducer(state={
 			return {
 				...state,
 				comments: commentsReducer(state.comments, action) 
+			}
+		}
+
+		case constants.EVENT_DETAILS_LOADING: {
+			return {
+				...state,
+				ui: uiReducer(state.ui, action)
 			}
 		}
 		default: return state;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import SearchBar from '../../../components/search-bar';
-import { Grid, Search, Dropdown, Button, Icon } from 'semantic-ui-react';
+import { Grid, Search, Dropdown, Button, Icon, Pagination } from 'semantic-ui-react';
 //import { ButtonSuccess, ButtonWarning, ButtonInfo, ButtonDanger } from '../../../components/button';
-import { changeStatus, changeSearch, changeSubject, changeCity, search, statuses } from './filtersActions';
+import { changeStatus, changeSearch, changePage, changeSubject, changeCity, search, statuses } from './filtersActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
@@ -15,18 +15,22 @@ const Filters = ({
 	onChangeCity,
 	filter,
 	search,
+	page,
+	pagesCount,
+	onChangePage,
 	status,
 	subject,
 	city,
 	cities,
 	subjects,
 	statuses,
-	history 
+	history,
+	children
 }) => {
 	//const { ALL, SELF, PLAN } = visibilityFilters;
 	return (
 		<div className='filters'>
-			<Grid columns='equal'>
+			<Grid className='filters__menu' columns='equal'>
 				<Grid.Column width={4}>
 					<SearchBar
 						className='filters__search-bar'
@@ -95,6 +99,17 @@ const Filters = ({
 					</Button>
 				</Grid.Column>
 			</Grid>
+			{children}
+			<Pagination
+				className='filters__pagination'
+				activePage={page}
+				firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+				lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+				prevItem={{ content: <Icon name='angle left' />, icon: true }}
+				nextItem={{ content: <Icon name='angle right' />, icon: true }}
+				totalPages={pagesCount}
+				onPageChange={onChangePage}
+			/>
 		</div>
 	);
 }
@@ -123,6 +138,11 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		onChangeSearch: (value) => {
 			dispatch(changeSearch(value));
+		},
+		onChangePage: (event, data) => {
+			console.log(data);
+			dispatch(changePage(data.activePage));
+			dispatch(search());
 		},
 		onChangeSubject: (event, data) => {
 			dispatch(changeSubject(data.value));

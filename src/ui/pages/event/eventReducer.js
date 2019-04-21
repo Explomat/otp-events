@@ -1,5 +1,21 @@
 import { constants } from './eventActions';
 
+function uiReducer(state = {
+	isLoading: false
+}, action){
+	switch(action.type) {
+
+		case constants.NEW_EVENT_LOADING: {
+			return {
+				...state,
+				isLoading: action.payload
+			}
+		}
+
+		default: return state;
+	}
+}
+
 export default function eventNewReducer(state = {
 	id: '',
 	title: '',
@@ -14,7 +30,10 @@ export default function eventNewReducer(state = {
 	max_person_count: 0,
 	cost: 0,
 	cities: [],
-	subjects: []
+	subjects: [],
+	ui: {
+		isLoading: false
+	}
 }, action){
 	switch(action.type) {
 
@@ -106,6 +125,13 @@ export default function eventNewReducer(state = {
 			return {
 				...state,
 				cost: action.payload
+			}
+		}
+
+		case constants.NEW_EVENT_LOADING: {
+			return {
+				...state,
+				ui: uiReducer(state.ui, action)
 			}
 		}
 

@@ -92,6 +92,17 @@ function eventsReducer(state=[], action){
 	}
 }
 
+function loadingReducer(state = false, action){
+	switch(action.type) {
+
+		case constants.INITIAL_LOADING: {
+			return action.payload;
+		}
+
+		default: return state;
+	}
+}
+
 const reducer = combineReducers({
 	user: userReducer,
 	cities: citiesReducer,
@@ -99,7 +110,8 @@ const reducer = combineReducers({
 	statuses: statusReducer,
 	events: eventsReducer,
 	ui: combineReducers({
-		filters: filtersReducer
+		filters: filtersReducer,
+		isLoading: loadingReducer
 	})
 });
 

@@ -23,7 +23,9 @@ import {
 	List,
 	Button,
 	Comment,
-	Form
+	Form,
+	Dimmer,
+	Loader
 } from 'semantic-ui-react';
 import formatDate from '../../utils/formatDate';
 import toBoolean from '../../utils/toBoolean';
@@ -147,6 +149,7 @@ class EventDetails extends Component {
 
 	render(){
 		const {
+			ui,
 			history,
 			id,
 			cur_user_id,
@@ -181,6 +184,14 @@ class EventDetails extends Component {
 		const { comment, isEditCommentNow } = this.state;
 
 		const styles = img ? { backgroundImage: `url(${img})` } : {};
+
+		if (ui.isLoading){
+			return (
+				<Dimmer active inverted>
+					<Loader inverted>Loading</Loader>
+				</Dimmer>
+			);
+		}
 
 		return (
 			<div className='event-details'>

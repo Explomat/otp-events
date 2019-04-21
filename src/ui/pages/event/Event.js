@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Label, Icon, Dropdown, Input, Button, TextArea, Message } from 'semantic-ui-react';
+import { Form, Label, Icon, Dropdown, Input, Button, TextArea, Message, Dimmer,  Loader } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
 import { setDefaultLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
@@ -21,7 +21,7 @@ class Event extends Component {
 
 		this.state = {
 			isShowWarning: false,
-			fileName: ''
+			fileName: props.file_name || ''
 		}
 
 		this.formRef = React.createRef();
@@ -66,8 +66,11 @@ class Event extends Component {
 	}
 
 	handleChangeFile(e) {
+		const path = e.target.value;
+		const lastIndex = path.lastIndexOf('\\');
+		const fname = lastIndex === -1 ? path : path.substring(lastIndex + 1, path.length);
 		this.setState({
-			fileName: e.target.value
+			fileName: fname
 		});
 	}
 
@@ -96,6 +99,7 @@ class Event extends Component {
 
 	render(){
 		const {
+			ui,
 			history,
 			onChangeTitle,
 			onChangeDescription,
@@ -124,6 +128,17 @@ class Event extends Component {
 		} = this.props;
 
 		const { isShowWarning, fileName } = this.state;
+
+		if (ui.isLoading){
+			return (
+				<Dimmer active inverted>
+					<Loader inverted>Loading</Loader>
+				</Dimmer>
+			);
+		}
+
+		console.log();
+
 		return (
 			<div className='event-new'>
 				<Button

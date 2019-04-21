@@ -3,6 +3,14 @@
 	margin: 8px;
 }
 
+.filters__menu {
+	padding: 0 16px !important;
+}
+
+.filters__pagination{
+	margin-left: 16px !important;
+}
+
 .filters__dropdown {
 	margin-right: 4px;
 	font-size: .85714286rem !important;
