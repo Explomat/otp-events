@@ -7,7 +7,10 @@ const initialState = {
 	pagesCount: 1,
 	status: 'all',
 	subject: 'all',
-	city: 'all'
+	city: 'all',
+	ui: {
+		isLoading: false
+	}
 }
 
 export default function reducer(state = initialState, action) {

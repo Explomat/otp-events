@@ -60,6 +60,13 @@ export function clearFields(){
 }
 
 
+function loading(isLoading){
+	return {
+		type: homeConstants.INITIAL_LOADING,
+		payload: isLoading
+	}
+}
+
 export function search(){
 	return (dispatch, getState) => {
 		const { home } = getState();
@@ -75,6 +82,8 @@ export function search(){
 			subject: filters.subject
 
 		});
+
+		dispatch(loading(true));
 		fetch(path)
 		.then(resp => {
 			return resp.json();
@@ -84,6 +93,7 @@ export function search(){
 				//dispatch(error(data.error));
 				console.error(data.error);
 			} else {
+				dispatch(loading(false));
 				dispatch({
 					type: homeConstants.GET_INITIAL_DATA_SUCCESS,
 					payload: data

@@ -31,6 +31,9 @@ export default function eventNewReducer(state = {
 	cost: 0,
 	cities: [],
 	subjects: [],
+	img: '',
+	img_name: '',
+	prevFileId: '',
 	ui: {
 		isLoading: false
 	}
@@ -51,10 +54,19 @@ export default function eventNewReducer(state = {
 			return {
 				...state,
 				...action.payload,
+				prevFileId: action.payload.img ? 
+					action.payload.img.substring(action.payload.img.lastIndexOf('=') + 1, action.payload.img.length) : '',
 				start_date: action.payload.start_date ? new Date(action.payload.start_date): new Date(),
 				finish_date: action.payload.finish_date ? new Date(action.payload.finish_date): new Date(),
 				cities,
 				subjects
+			}
+		}
+
+		case constants.NEW_EVENT_RESET_PREV_FILE: {
+			return {
+				...state,
+				prevFileId: ''
 			}
 		}
 

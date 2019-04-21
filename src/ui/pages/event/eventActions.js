@@ -15,6 +15,7 @@ export const constants = {
 	'NEW_EVENT_CHANGE_COST': 'NEW_EVENT_CHANGE_COST',
 	'NEW_EVENT_CHANGE_ADDRESS': 'NEW_EVENT_CHANGE_ADDRESS',
 	'NEW_EVENT_LOADING': 'NEW_EVENT_LOADING',
+	'NEW_EVENT_RESET_PREV_FILE': 'NEW_EVENT_RESET_PREV_FILE',
 	...createRemoteActions('GET_EVENT_CREATE')
 }
 
@@ -22,6 +23,12 @@ function loading(isLoading){
 	return {
 		type: constants.NEW_EVENT_LOADING,
 		payload: isLoading
+	}
+}
+
+export function onResetPrevFile(){
+	return {
+		type: constants.NEW_EVENT_RESET_PREV_FILE
 	}
 }
 
@@ -215,47 +222,102 @@ export function getData(eventId){
 			dispatch({
 				type: constants.GET_EVENT_CREATE_SUCCESS,
 				payload: {
-					title: 'test',
-					long_desc: 'long descr',
-					short_desc: 'short descr',
-					start_date: 'Wed, 10 Apr 2019 09:00:00 +0300',
-					finish_date: 'Wed, 10 Apr 2019 09:00:00 +0300',
-					city: 'Абакан',
-					city_id: '5667697629116916643',
-					address: 'test',
-					subject_id: 'Спорт',
-					max_person_count: 10,
-					cost: 100,
-					cities: [
-						{
-							"id": "5667697629116916643",
-							"name": "Абакан"
-						},
-						{
-							"id": "5667697629116916644",
-							"name": "Аксай"
-						},
-						{
-							"id": "5667697629116916645",
-							"name": "Актау"
-						},
-						{
-							"id": "5667697629116916646",
-							"name": "Актобе"
-						},
-						{
-							"id": "5667697629116916647",
-							"name": "Алматы"
-						}
-	    			],
-					subjects: [
-						"Образование",
-						"Спорт",
-						"Здоровье",
-						"Путешествия, туризм",
-						"Культура",
-						"Развлечение"
-					]
+				  "id": "6675349716799068736",
+				  "cur_user_id": "6148914691236517121",
+				  "user_role": "admin",
+				  "title": "Мой тест",
+				  "status_id": "plan",
+				  "status_name": "Активные",
+				  "long_desc": "Полное",
+				  "img": "/download_file.html?file_id=6674662346535409549",
+				  "img_name": "test.png",
+				  "max_person_count": "7",
+				  "start_date": "Tue, 02 Apr 2019 17:25:36 +0300",
+				  "finish_date": "Tue, 02 Apr 2019 18:50:00 +0300",
+				  "cost": "8000",
+				  "city_id": "5667697629116916647",
+				  "city": "Алматы",
+				  "subject_id": "Здоровье",
+				  "address": "",
+				  "phone_number": "84993674214",
+				  "email": "user_006@gmail.com",
+				  "event_admin_id": "6671539145020354632",
+				  "event_admin_fullname": "Бахирев Рустам Маратович",
+				  "event_admin_position": "Главный бухгалтер",
+				  "event_admin_avatar": "/download_file.html?file_id=6671539891956233514",
+				  "like_count": "0",
+				  "collaborators": [],
+				  "comments": [],
+				  "cities": [
+				    {
+				      "id": "5667697629116916643",
+				      "name": "Абакан"
+				    },
+				    {
+				      "id": "5667697629116916644",
+				      "name": "Аксай"
+				    },
+				    {
+				      "id": "5667697629116916645",
+				      "name": "Актау"
+				    },
+				    {
+				      "id": "5667697629116916646",
+				      "name": "Актобе"
+				    },
+				    {
+				      "id": "5667697629116916647",
+				      "name": "Алматы"
+				    },
+				    {
+				      "id": "5667697629116916648",
+				      "name": "Архангельск"
+				    },
+				    {
+				      "id": "5667697629116916649",
+				      "name": "Астана"
+				    },
+				    {
+				      "id": "5667697629116916650",
+				      "name": "Астрахань"
+				    },
+				    {
+				      "id": "5667697629116916651",
+				      "name": "Атырау"
+				    },
+				    {
+				      "id": "5667697629116916652",
+				      "name": "Барнаул"
+				    },
+				    {
+				      "id": "5667697629116916653",
+				      "name": "Белгород"
+				    },
+				    {
+				      "id": "5667697629116916654",
+				      "name": "Бобруйск"
+				    },
+				    {
+				      "id": "5667697629116916655",
+				      "name": "Брест"
+				    },
+				    {
+				      "id": "5667697629116916656",
+				      "name": "Брянск"
+				    },
+				    {
+				      "id": "5667697629116916657",
+				      "name": "Винница"
+				    }
+				  ],
+				  "subjects": [
+				    "Образование",
+				    "Спорт",
+				    "Здоровье",
+				    "Путешествия, туризм",
+				    "Культура",
+				    "Развлечение"
+				  ]
 				}
 			});
 		}, 1000);*/

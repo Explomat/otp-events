@@ -140,7 +140,6 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(changeSearch(value));
 		},
 		onChangePage: (event, data) => {
-			console.log(data);
 			dispatch(changePage(data.activePage));
 			dispatch(search());
 		},

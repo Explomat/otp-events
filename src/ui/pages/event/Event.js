@@ -21,7 +21,7 @@ class Event extends Component {
 
 		this.state = {
 			isShowWarning: false,
-			fileName: props.file_name || ''
+			fileName: props.img_name || ''
 		}
 
 		this.formRef = React.createRef();
@@ -72,6 +72,7 @@ class Event extends Component {
 		this.setState({
 			fileName: fname
 		});
+		this.props.onResetPrevFile();
 	}
 
 	handleSave(){
@@ -124,7 +125,9 @@ class Event extends Component {
 			start_date,
 			finish_date,
 			cities,
-			subjects
+			subjects,
+			img_name,
+			prevFileId
 		} = this.props;
 
 		const { isShowWarning, fileName } = this.state;
@@ -136,8 +139,6 @@ class Event extends Component {
 				</Dimmer>
 			);
 		}
-
-		console.log();
 
 		return (
 			<div className='event-new'>
@@ -296,6 +297,7 @@ class Event extends Component {
 						<div className='event-new__file_upload'>
 							<Button size='tiny'>Выберите изображение</Button>
 							<div className='event-new__file_upload-name'>{fileName || 'Файл не выбран'}</div>
+							<input readOnly className='event-new__form-field' type='text' name='prev_file_id' value={prevFileId} />
 							<input type='file' name='upload_file' accept='image/*' onChange={this.handleChangeFile}/>
 						</div>
 					</Form.Field>
