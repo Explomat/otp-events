@@ -69,10 +69,11 @@ class Event extends Component {
 		const path = e.target.value;
 		const lastIndex = path.lastIndexOf('\\');
 		const fname = lastIndex === -1 ? path : path.substring(lastIndex + 1, path.length);
-		this.setState({
+		/*this.setState({
 			fileName: fname
-		});
-		this.props.onResetPrevFile();
+		});*/
+		this.props.onChangeFileName(fname);
+		//this.props.onResetPrevFile();
 	}
 
 	handleSave(){
@@ -130,7 +131,7 @@ class Event extends Component {
 			prevFileId
 		} = this.props;
 
-		const { isShowWarning, fileName } = this.state;
+		const { isShowWarning } = this.state;
 
 		if (ui.isLoading){
 			return (
@@ -296,7 +297,7 @@ class Event extends Component {
 					<Form.Field>
 						<div className='event-new__file_upload'>
 							<Button size='tiny'>Выберите изображение</Button>
-							<div className='event-new__file_upload-name'>{fileName || 'Файл не выбран'}</div>
+							<div className='event-new__file_upload-name'>{img_name || 'Файл не выбран'}</div>
 							<input readOnly className='event-new__form-field' type='text' name='prev_file_id' value={prevFileId} />
 							<input type='file' name='upload_file' accept='image/*' onChange={this.handleChangeFile}/>
 						</div>

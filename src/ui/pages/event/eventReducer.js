@@ -63,9 +63,10 @@ export default function eventNewReducer(state = {
 			}
 		}
 
-		case constants.NEW_EVENT_RESET_PREV_FILE: {
+		case constants.NEW_EVENT_CHANGE_FILE_NAME: {
 			return {
 				...state,
+				img_name: action.payload,
 				prevFileId: ''
 			}
 		}

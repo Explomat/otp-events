@@ -15,7 +15,7 @@ export const constants = {
 	'NEW_EVENT_CHANGE_COST': 'NEW_EVENT_CHANGE_COST',
 	'NEW_EVENT_CHANGE_ADDRESS': 'NEW_EVENT_CHANGE_ADDRESS',
 	'NEW_EVENT_LOADING': 'NEW_EVENT_LOADING',
-	'NEW_EVENT_RESET_PREV_FILE': 'NEW_EVENT_RESET_PREV_FILE',
+	'NEW_EVENT_CHANGE_FILE_NAME': 'NEW_EVENT_CHANGE_FILE_NAME',
 	...createRemoteActions('GET_EVENT_CREATE')
 }
 
@@ -26,9 +26,10 @@ function loading(isLoading){
 	}
 }
 
-export function onResetPrevFile(){
+export function onChangeFileName(fname){
 	return {
-		type: constants.NEW_EVENT_RESET_PREV_FILE
+		type: constants.NEW_EVENT_CHANGE_FILE_NAME,
+		payload: fname
 	}
 }
 

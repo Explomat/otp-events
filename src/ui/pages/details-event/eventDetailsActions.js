@@ -25,7 +25,7 @@ function loading(isLoading){
 
 export function getEventDetails(id){
 	return dispatch => {
-		const path = url.createPath({
+		/*const path = url.createPath({
 			server_name: 'events',
 			action_name: 'EventData',
 			id
@@ -50,18 +50,18 @@ export function getEventDetails(id){
 		}).catch(e => {
 			//dispatch(error(e.message));
 			console.log(e.message);
-		});
+		});*/
 
 
 		
-		/*dispatch(loading(true));
+		dispatch(loading(true));
 		setTimeout(() => {
 			dispatch(loading(false));
 			dispatch({
 				type: constants.GET_EVENT_DETAILS_INITIAL_DATA_SUCCESS,
 				payload: { ...mock }
 			});
-		}, 300);*/
+		}, 300);
 	}
 }
 
