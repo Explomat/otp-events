@@ -104,6 +104,45 @@ export function resolveEvent(){
 	}
 }
 
+export function completeEvent(){
+	return (dispatch, getState) => {
+		const { eventDetails } = getState();
+
+		const path = url.createPath({
+			server_name: 'events',
+			action_name: 'CompleteEvent'
+		});
+
+		fetch(path, {
+			method: 'POST',
+			body: JSON.stringify({
+				id: eventDetails.id
+			})
+		})
+		.then(resp => {
+			return resp.json();
+		})
+		.then(data => {
+			if (data.error){
+				//dispatch(error(data.error));
+				console.log(data.error);
+			} else {
+				/*dispatch({
+					type: constants.REJECT_EVENT_DETAILS_SUCCESS,
+					payload: data
+				});*/
+				dispatch({
+					type: constants.EVENT_DETAILS_SET_STATUS,
+					payload: data
+				});
+			}
+		}).catch(e => {
+			//dispatch(error(e.message));
+			console.log(e.message);
+		});
+	}
+}
+
 export function rejectEvent(){
 	return (dispatch, getState) => {
 		const { eventDetails } = getState();

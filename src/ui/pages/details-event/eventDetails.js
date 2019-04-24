@@ -10,7 +10,8 @@ import {
 	respondParticipiant,
 	refuseParticipiant,
 	resolveEvent,
-	rejectEvent
+	rejectEvent,
+	completeEvent
 } from './eventDetailsActions';
 import {
 	Icon,
@@ -25,7 +26,8 @@ import {
 	Comment,
 	Form,
 	Dimmer,
-	Loader
+	Loader,
+	Dropdown
 } from 'semantic-ui-react';
 import formatDate from '../../utils/formatDate';
 import toBoolean from '../../utils/toBoolean';
@@ -100,7 +102,7 @@ class EventDetails extends Component {
 	}
 
 	_adminButtons(){
-		const { id, status_id, onResolveEvent, onRejectEvent, history, user_role } = this.props;
+		const { id, status_id, onResolveEvent, onRejectEvent, onCompleteEvent, history, user_role } = this.props;
 		const buttons = [];
 		const isEventAdmin = user_role === 'event_admin';
 		const isAdmin = user_role === 'admin';
@@ -108,14 +110,21 @@ class EventDetails extends Component {
 		if (isAdmin || isEventAdmin){
 			if (status_id === 'project' || status_id === 'plan'){
 				buttons.push(
-					<Button key={2}
-						className='event-details__reject'
-						size='small'
-						secondary
-						onClick={onRejectEvent}
-						icon='close'
-						content='Отменить'
-					/>,
+					<Button.Group color='teal' className='event-details__reject' key={2}>
+						<Button>Сменить статус</Button>
+						<Dropdown
+							as={Button}
+							className='icon'
+							floating
+							trigger={<React.Fragment />}
+						>
+							<Dropdown.Menu>
+		    					<Dropdown.Item text='Отменить' icon='close' onClick={onRejectEvent}/>
+		    					{status_id === 'plan' && <Dropdown.Item icon='minus' text='Завершить' onClick={onCompleteEvent}/>}
+		    				</Dropdown.Menu>
+		    			</Dropdown>
+	    				
+	    			</Button.Group>,
 					<Button key={3}
 						className='event-details__reject'
 						size='small'
@@ -415,7 +424,8 @@ const mapDispatchProps = (dispatch, ownProps) => {
 		onRespondParticipiant: () => dispatch(respondParticipiant()),
 		onRefuseParticipiant: () => dispatch(refuseParticipiant()),
 		onResolveEvent: () => dispatch(resolveEvent()),
-		onRejectEvent: () => dispatch(rejectEvent())
+		onRejectEvent: () => dispatch(rejectEvent()),
+		onCompleteEvent: () => dispatch(completeEvent())
 	}
 }
 

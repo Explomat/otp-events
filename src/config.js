@@ -22,7 +22,8 @@ addServer({ id: '6668987061819174354', name: 'events' })
 		'SaveEvent',
 		'Refuse',
 		'ResolveEvent',
-		'RejectEvent'
+		'RejectEvent',
+		'CompleteEvent'
 	]
 );
 
