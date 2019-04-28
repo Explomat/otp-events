@@ -30,7 +30,7 @@ class Event extends Component {
 		this.onChangeRawStartDate = this.onChangeRawStartDate.bind(this);
 		this.onChangeRawFinishDate = this.onChangeRawFinishDate.bind(this);
 		this.handleChangeFile = this.handleChangeFile.bind(this);
-		this.dateFormat = 'd.MM.yyyy, hh:mm';
+		this.dateFormat = 'dd.MM.yyyy, HH:mm';
 	}
 
 	_isFormFilled(){

@@ -8,6 +8,7 @@ const initialState = {
 	status: 'all',
 	subject: 'all',
 	city: 'all',
+	affilation: 'all',
 	ui: {
 		isLoading: false
 	}
@@ -61,6 +62,13 @@ export default function reducer(state = initialState, action) {
 			return {
 				...state,
 				city: action.payload
+			}
+		}
+
+		case constants.CHANGE_AFFILATION: {
+			return {
+				...state,
+				affilation: action.payload
 			}
 		}
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from '../../../components/search-bar';
 import { Grid, Search, Dropdown, Button, Icon, Pagination } from 'semantic-ui-react';
 //import { ButtonSuccess, ButtonWarning, ButtonInfo, ButtonDanger } from '../../../components/button';
-import { changeStatus, changeSearch, changePage, changeSubject, changeCity, search, statuses } from './filtersActions';
+import { changeStatus, changeSearch, changePage, changeSubject, changeCity, changeAffilation, search, statuses } from './filtersActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
@@ -13,6 +13,7 @@ const Filters = ({
 	onChangeSearch,
 	onChangeSubject,
 	onChangeCity,
+	onChangeAffilation,
 	filter,
 	search,
 	page,
@@ -22,6 +23,8 @@ const Filters = ({
 	subject,
 	city,
 	cities,
+	affilation,
+	affilations,
 	subjects,
 	statuses,
 	history,
@@ -40,6 +43,13 @@ const Filters = ({
 					/>
 				</Grid.Column>
 				<Grid.Column width={9}>
+					<Dropdown
+						className='filters__dropdown'
+						selection
+						options={affilations}
+						onChange={onChangeAffilation}
+						value={affilation}
+					/>
 					<Dropdown
 						className='filters__dropdown'
 						placeholder='Выберите город'
@@ -116,7 +126,7 @@ const Filters = ({
 
 
 const mapStateToProps = (state) => {
-	const { user, statuses, cities, subjects } = state.home;
+	const { user, statuses, cities, affilations, subjects } = state.home;
 
 	const _statuses = statuses.filter(s => {
 		return s.roles.indexOf(user.user_role) !== -1;
@@ -124,6 +134,7 @@ const mapStateToProps = (state) => {
 
 	return {
 		cities,
+		affilations,
 		subjects,
 		statuses: _statuses,
 		...state.home.ui.filters
@@ -149,6 +160,10 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		onChangeCity: (event, data) => {
 			dispatch(changeCity(data.value));
+			dispatch(search());
+		},
+		onChangeAffilation: (event, data) => {
+			dispatch(changeAffilation(data.value));
 			dispatch(search());
 		},
 		filter: () => {

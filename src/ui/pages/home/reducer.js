@@ -46,6 +46,22 @@ function citiesReducer(state=[], action){
 	}
 }
 
+function affilationsReducer(state=[], action){
+	switch(action.type) {
+
+		case constants.GET_INITIAL_DATA_SUCCESS: {
+			let { filter_list } = action.payload;
+
+			const affilations = filter_list.map(a => ({
+				text: a.title,
+				value: a.id
+			}));
+			return affilations;
+		}
+		default: return state;
+	}
+}
+
 function subjectsReducer(state=[], action){
 	switch(action.type) {
 
@@ -106,6 +122,7 @@ function loadingReducer(state = false, action){
 const reducer = combineReducers({
 	user: userReducer,
 	cities: citiesReducer,
+	affilations: affilationsReducer,
 	subjects: subjectsReducer,
 	statuses: statusReducer,
 	events: eventsReducer,

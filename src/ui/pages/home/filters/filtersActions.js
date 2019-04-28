@@ -7,6 +7,7 @@ export const constants = {
 	'CHANGE_STATUS': 'CHANGE_STATUS',
 	'CHANGE_SUBJECT': 'CHANGE_SUBJECT',
 	'CHANGE_CITY': 'CHANGE_CITY',
+	'CHANGE_AFFILATION': 'CHANGE_AFFILATION',
 	'CLEAR_FIELDS': 'CLEAR_FIELDS'
 }
 
@@ -53,6 +54,13 @@ export function changeCity(value){
 	}
 }
 
+export function changeAffilation(value){
+	return {
+		type: constants.CHANGE_AFFILATION,
+		payload: value
+	}
+}
+
 export function clearFields(){
 	return {
 		type: constants.CLEAR_FIELDS
@@ -79,6 +87,7 @@ export function search(){
 			search: filters.search,
 			page: filters.page,
 			city: filters.city,
+			affilation: filters.affilation,
 			subject: filters.subject
 
 		});

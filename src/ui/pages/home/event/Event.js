@@ -123,8 +123,17 @@ class Event extends Component {
 						position: 'absolute',
 						right: 0
 					}}>
-						<Icon name='ruble sign' color='grey'/>
-						<span className='otp-action__label otp-news__comment-count otp-color--black-hint'>{cost}</span>
+						{cost == 0 ?
+							<span className='otp-color--black-hint'>Бесплатное</span> :
+							<span>
+								<Icon name='ruble sign' color='grey'/>
+								<span
+									className='otp-action__label otp-news__comment-count otp-color--black-hint'
+								>
+									{cost}
+								</span>
+							</span>
+						}
 					</div>
 				</div>
 				{/*<div className='mdl-card__actions'>
@@ -139,8 +148,18 @@ class Event extends Component {
 							alignItems: 'center'}}
 						title='Количество участников'
 					>
-						<i className='material-icons' style={{marginRight: '4px'}}>group</i>
-						<b className='otp-event__count'>{cur_person_count} / {max_person_count}</b>
+						{max_person_count == 0 ?
+							<span>
+								Без ограничений
+							</span> :
+							<span style={{
+								display: 'flex',
+								alignItems: 'center'}}
+							>
+								<i className='material-icons' style={{marginRight: '4px'}}>group</i>
+								<b className='otp-event__count'>{cur_person_count} / {max_person_count}</b>
+							</span>
+						}
 					</span>
 				</div>
 			</Link>

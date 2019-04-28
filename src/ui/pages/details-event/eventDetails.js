@@ -257,27 +257,29 @@ class EventDetails extends Component {
 										) : (
 										<span>Стоимость не указана</span>
 									)}
-									{status_id === 'plan' && find(collaborators, { id: cur_user_id }) ? 
-										(
-										 	<Button
-												floated='right'
-												size='tiny'
-												basic
-												color='red'
-												onClick={onRefuseParticipiant}
-											>
-												Отказаться
-											</Button>
-										) : (
-										 	<span>{collaborators.length < max_person_count && <Button
-												floated='right'
-												size='tiny'
-												basic
-												color='blue'
-												onClick={onRespondParticipiant}
-											>
-												Откликнуться
-											</Button>}</span>
+									{status_id === 'plan' && 
+										(find(collaborators, { id: cur_user_id }) ?
+											(
+											 	<Button
+													floated='right'
+													size='tiny'
+													basic
+													color='red'
+													onClick={onRefuseParticipiant}
+												>
+													Отказаться
+												</Button>
+											) : (
+											 	<span>{(collaborators.length < max_person_count || max_person_count === 0) && <Button
+													floated='right'
+													size='tiny'
+													basic
+													color='blue'
+													onClick={onRespondParticipiant}
+												>
+													Откликнуться
+												</Button>}</span>
+											)
 										)
 									}
 									</Card.Content>
@@ -289,7 +291,7 @@ class EventDetails extends Component {
 									{
 										collaborators.map((c, index) => (
 											<List.Item key={index}>
-												{event_admin_id === cur_user_id ? (
+												{(event_admin_id === cur_user_id && status_id === 'plan') ? (
 													<List.Content floated='right'>
 														{!toBoolean(c.is_confirm) ? (
 															<Button.Group size='mini'>
@@ -343,16 +345,19 @@ class EventDetails extends Component {
 															<div>{formatDate(new Date(c.date))}</div>
 														</Comment.Metadata>
 														<Comment.Text>{c.message}</Comment.Text>
-														{cur_user_id === c.user_id && <Comment.Actions>
-															<Comment.Action onClick={() => this.handeShowEditCommentForm(c.id, c.message)}>
-																<Icon name='pencil' />
-																Редактировать
-															</Comment.Action>
-															<Comment.Action onClick={() => removeComment(id, c.id)}>
-																<Icon name='remove' />
-																Удалить
-															</Comment.Action>
-														</Comment.Actions>}
+														{(cur_user_id === c.user_id && status_id === 'plan') &&
+														(
+															<Comment.Actions>
+																<Comment.Action onClick={() => this.handeShowEditCommentForm(c.id, c.message)}>
+																	<Icon name='pencil' />
+																	Редактировать
+																</Comment.Action>
+																<Comment.Action onClick={() => removeComment(id, c.id)}>
+																	<Icon name='remove' />
+																	Удалить
+																</Comment.Action>
+															</Comment.Actions>
+														)}
 													</Comment.Content>
 												</Comment>
 											): (
