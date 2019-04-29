@@ -1,3 +1,7 @@
+import 'core-js/features/set';
+import 'core-js/features/map';
+
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
