@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
+    "core-js": "^3.0.1",
     "explomat-react-scripts": "2.1.10",
     "formdata-polyfill": "^3.0.17",
     "moment": "^2.24.0",

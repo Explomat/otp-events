@@ -27,7 +27,8 @@ import {
 	Form,
 	Dimmer,
 	Loader,
-	Dropdown
+	Dropdown,
+	Label
 } from 'semantic-ui-react';
 import formatDate from '../../utils/formatDate';
 import toBoolean from '../../utils/toBoolean';
@@ -111,7 +112,13 @@ class EventDetails extends Component {
 			if (status_id === 'project' || status_id === 'plan'){
 				buttons.push(
 					<Button.Group color='teal' className='event-details__reject' key={2}>
-						<Button>Сменить статус</Button>
+						<Label style={{
+							borderRadius: '4px 0px 0px 4px',
+							marginRight: '0',
+							cursor: 'pointer'
+						}} size='small' color='teal'>
+							Сменить статус
+						</Label>
 						<Dropdown
 							as={Button}
 							className='icon'

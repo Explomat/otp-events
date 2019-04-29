@@ -34,15 +34,15 @@ const Filters = ({
 	return (
 		<div className='filters'>
 			<Grid className='filters__menu' columns='equal'>
-				<Grid.Column width={4}>
+				<Grid.Column width={3}>
 					<SearchBar
-						className='filters__search-bar'
+						classNameInput='filters__search-bar'
 						onChange={ onChangeSearch }
 						onSearch={ filter }
 						value={search}
 					/>
 				</Grid.Column>
-				<Grid.Column width={9}>
+				<Grid.Column width={11}>
 					<Dropdown
 						className='filters__dropdown'
 						selection

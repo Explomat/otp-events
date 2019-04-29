@@ -3,6 +3,10 @@
 	margin: 8px;
 }
 
+.filters__search-bar{
+	width: 100%;
+}
+
 .filters__menu {
 	padding: 0 16px !important;
 }
