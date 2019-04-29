@@ -144,6 +144,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onChangeStatus: (event, data) => {
+			dispatch(changePage(1));
 			dispatch(changeStatus(data.value));
 			dispatch(search());
 		},
@@ -155,18 +156,22 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(search());
 		},
 		onChangeSubject: (event, data) => {
+			dispatch(changePage(1));
 			dispatch(changeSubject(data.value));
 			dispatch(search());
 		},
 		onChangeCity: (event, data) => {
+			dispatch(changePage(1));
 			dispatch(changeCity(data.value));
 			dispatch(search());
 		},
 		onChangeAffilation: (event, data) => {
+			dispatch(changePage(1));
 			dispatch(changeAffilation(data.value));
 			dispatch(search());
 		},
 		filter: () => {
+			dispatch(changePage(1));
 			dispatch(search());
 		}
 	}
