@@ -115,7 +115,8 @@ class EventDetails extends Component {
 						<Label style={{
 							borderRadius: '4px 0px 0px 4px',
 							marginRight: '0',
-							cursor: 'pointer'
+							cursor: 'pointer',
+							lineHeight: 'inherit'
 						}} size='small' color='teal'>
 							Сменить статус
 						</Label>
@@ -125,7 +126,7 @@ class EventDetails extends Component {
 							floating
 							trigger={<React.Fragment />}
 						>
-							<Dropdown.Menu>
+							<Dropdown.Menu size='small'>
 		    					<Dropdown.Item text='Отменить' icon='close' onClick={onRejectEvent}/>
 		    					{status_id === 'plan' && <Dropdown.Item icon='minus' text='Завершить' onClick={onCompleteEvent}/>}
 		    				</Dropdown.Menu>

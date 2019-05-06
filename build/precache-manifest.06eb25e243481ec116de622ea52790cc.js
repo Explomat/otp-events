@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/icons.faff9214.woff"
   },
   {
-    "revision": "188be7f2ff2ed8600d1e",
+    "revision": "537babee19a7e82d211e",
     "url": "/otp/event/static/css/main.f807f037.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/brand-icons.a1a749e8.svg"
   },
   {
-    "revision": "ea0b72318613eb4383df",
-    "url": "/otp/event/static/js/2.0618de4f.chunk.js"
+    "revision": "9138db29c282bc58ae57",
+    "url": "/otp/event/static/js/2.99011175.chunk.js"
   },
   {
     "revision": "11db2e845c757ed91a722bad1b399289",
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/icons.0ab54153.woff2"
   },
   {
-    "revision": "188be7f2ff2ed8600d1e",
-    "url": "/otp/event/static/js/main.263b532a.chunk.js"
+    "revision": "537babee19a7e82d211e",
+    "url": "/otp/event/static/js/main.c0e3f990.chunk.js"
   },
   {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
@@ -60,16 +60,16 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/flags.9c74e172.png"
   },
   {
-    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
-    "url": "/otp/event/static/media/icons.8e3c7f55.eot"
-  },
-  {
     "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
     "url": "/otp/event/static/media/icons.b87b9ba5.ttf"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
     "url": "/otp/event/static/media/brand-icons.13db00b7.eot"
+  },
+  {
+    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
+    "url": "/otp/event/static/media/icons.8e3c7f55.eot"
   },
   {
     "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
@@ -84,11 +84,11 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/icons.962a1bf3.svg"
   },
   {
-    "revision": "ea0b72318613eb4383df",
-    "url": "/otp/event/static/css/2.79d2c3fa.chunk.css"
+    "revision": "9138db29c282bc58ae57",
+    "url": "/otp/event/static/css/2.acec2701.chunk.css"
   },
   {
-    "revision": "99eb1160a26760dd95779ae86bb96360",
+    "revision": "80d0ebc67c46b6f56772b28d0b36aa53",
     "url": "/otp/event/index.html"
   }
 ];
