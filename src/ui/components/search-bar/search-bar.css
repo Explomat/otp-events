@@ -5,10 +5,10 @@
 }
 
 .search-box__search-input {
-	height: 32.84px;
+	/*height: 32.84px;*/
 	line-height: 32.84px;
 	padding: 0px 15px 0px 30px !important;
-	//border: 3px solid #ffb900 !important;
+	/*border: 3px solid #ffb900 !important;*/
 	background-color: #fff !important;
 	border-radius: 4px !important;
 	outline: none;
