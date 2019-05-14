@@ -1,5 +1,5 @@
 {
-  "main.css": "/otp/event/static/css/main.9b98a387.chunk.css",
+  "main.css": "/otp/event/static/css/main.e25c18e5.chunk.css",
   "main.js": "/otp/event/static/js/main.dbcd9793.chunk.js",
   "main.js.map": "/otp/event/static/js/main.dbcd9793.chunk.js.map",
   "runtime~main.js": "/otp/event/static/js/runtime~main.844e9cdc.js",
@@ -8,10 +8,10 @@
   "static/js/2.99011175.chunk.js": "/otp/event/static/js/2.99011175.chunk.js",
   "static/js/2.99011175.chunk.js.map": "/otp/event/static/js/2.99011175.chunk.js.map",
   "index.html": "/otp/event/index.html",
-  "precache-manifest.553a538926dea2462dcaea56c91f47de.js": "/otp/event/precache-manifest.553a538926dea2462dcaea56c91f47de.js",
+  "precache-manifest.43694b3edeb115c017ec7188ec504f3b.js": "/otp/event/precache-manifest.43694b3edeb115c017ec7188ec504f3b.js",
   "service-worker.js": "/otp/event/service-worker.js",
   "static/css/2.7efa95b4.chunk.css.map": "/otp/event/static/css/2.7efa95b4.chunk.css.map",
-  "static/css/main.9b98a387.chunk.css.map": "/otp/event/static/css/main.9b98a387.chunk.css.map",
+  "static/css/main.e25c18e5.chunk.css.map": "/otp/event/static/css/main.e25c18e5.chunk.css.map",
   "static/media/semantic.min.css": "/otp/event/static/media/outline-icons.ef60a4f6.woff",
   "static/media/material.font.css": "/otp/event/static/media/material.font.11db2e84.woff2"
 }
