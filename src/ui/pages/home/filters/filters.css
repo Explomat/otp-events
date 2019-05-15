@@ -20,6 +20,10 @@
 	font-size: .85714286rem !important;
 }
 
+.filters__dropdown > input.search {
+	height: auto !important;
+}
+
 .filters__button-wrapper {
 	display: inline-block;
 	vertical-align: middle;
