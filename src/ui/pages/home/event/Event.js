@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Popup, Icon } from 'semantic-ui-react'
@@ -28,12 +29,15 @@ class Event extends Component {
 			server_name: 'events',
 			action_name: 'Like'
 		});
-		fetch(path, {
-			method: 'POST',
-			body: JSON.stringify({
+
+		axios({
+			method: 'post',
+			url: path,
+			data: JSON.stringify({
 				id: this.props.id
 			})
-		}).then(resp => {
+		})
+		.then(resp => {
 			return resp.json();
 		}).then(data => {
 			self.setState({

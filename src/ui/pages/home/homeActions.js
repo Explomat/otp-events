@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { url } from '../../../config';
 import createRemoteActions from '../../utils/createRemoteActions';
 import initialData from '../../mock/static.json';
@@ -39,7 +40,7 @@ export function getInitialData(){
 			subject: home.ui.filters.subject
 		});
 
-		fetch(path)
+		axios.get(path)
 		.then(resp => {
 			return resp.json();
 		})

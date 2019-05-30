@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { url } from '../../../../config';
 import { constants as homeConstants } from '../homeActions';
 
@@ -93,7 +94,7 @@ export function search(){
 		});
 
 		dispatch(loading(true));
-		fetch(path)
+		axios.get(path)
 		.then(resp => {
 			return resp.json();
 		})

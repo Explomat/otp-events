@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { url } from '../../../config';
 import createRemoteActions from '../../utils/createRemoteActions';
 import mock, { setParticipiantStatusMock, removeCommentMock, setCommentMock } from './mock';
@@ -32,7 +33,7 @@ export function getEventDetails(id){
 		});
 
 		dispatch(loading(true));
-		fetch(path)
+		axios.get(path)
 		.then(resp => {
 			return resp.json();
 		})
@@ -74,9 +75,10 @@ export function resolveEvent(){
 			action_name: 'ResolveEvent'
 		});
 
-		fetch(path, {
-			method: 'POST',
-			body: JSON.stringify({
+		axios({
+			method: 'post',
+			url: path,
+			data: JSON.stringify({
 				id: eventDetails.id
 			})
 		})
@@ -113,9 +115,11 @@ export function completeEvent(){
 			action_name: 'CompleteEvent'
 		});
 
-		fetch(path, {
-			method: 'POST',
-			body: JSON.stringify({
+
+		axios({
+			method: 'post',
+			url: path,
+			data: JSON.stringify({
 				id: eventDetails.id
 			})
 		})
@@ -152,9 +156,10 @@ export function rejectEvent(){
 			action_name: 'RejectEvent'
 		});
 
-		fetch(path, {
-			method: 'POST',
-			body: JSON.stringify({
+		axios({
+			method: 'post',
+			url: path,
+			data: JSON.stringify({
 				id: eventDetails.id
 			})
 		})
@@ -191,9 +196,10 @@ export function respondParticipiant() {
 			action_name: 'NewParticipiant'
 		});
 
-		fetch(path, {
-			method: 'POST',
-			body: JSON.stringify({
+		axios({
+			method: 'post',
+			url: path,
+			data: JSON.stringify({
 				id: eventDetails.id
 			})
 		})
@@ -226,9 +232,10 @@ export function refuseParticipiant() {
 			action_name: 'Refuse'
 		});
 
-		fetch(path, {
-			method: 'POST',
-			body: JSON.stringify({
+		axios({
+			method: 'post',
+			url: path,
+			data: JSON.stringify({
 				id: eventDetails.id
 			})
 		})
@@ -261,9 +268,10 @@ export function setParticipiantStatus(userId, isConfirm){
 			action_name: 'ParticipiantStatus'
 		});
 
-		fetch(path, {
-			method: 'POST',
-			body: JSON.stringify({
+		axios({
+			method: 'post',
+			url: path,
+			data: JSON.stringify({
 				id: eventDetails.id,
 				user_id: userId,
 				accept: isConfirm
@@ -311,9 +319,10 @@ export function removeComment(eventId, commentId){
 			action_name: 'RemoveComment'
 		});
 
-		fetch(path, {
-			method: 'POST',
-			body: JSON.stringify({
+		axios({
+			method: 'post',
+			url: path,
+			data: JSON.stringify({
 				id: eventId,
 				comment_id: commentId
 			})
@@ -358,9 +367,10 @@ export function addComment(eventId, message) {
 			action_name: 'AddComment'
 		});
 
-		fetch(path, {
-			method: 'POST',
-			body: JSON.stringify({
+		axios({
+			method: 'post',
+			url: path,
+			data: JSON.stringify({
 				id: eventId,
 				message
 			})
@@ -399,13 +409,14 @@ export function editComment(eventId, commentId, message) {
 			action_name: 'AddComment'
 		});
 
-		fetch(path, {
-			method: 'POST',
-			body: JSON.stringify({
-					id: eventId,
-					comment_id: commentId,
-					message
-				})
+		axios({
+			method: 'post',
+			url: path,
+			data: JSON.stringify({
+				id: eventId,
+				comment_id: commentId,
+				message
+			})
 		})
 		.then(resp => {
 			return resp.json();

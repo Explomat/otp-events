@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { url } from '../../../config';
 import createRemoteActions from '../../utils/createRemoteActions';
 import { omit } from 'lodash';
@@ -129,12 +130,10 @@ export function saveEvent(form, history){
 		const data = new FormData(form);
 
 		dispatch(loading(true));
-		fetch(path, {
-			method: 'POST',
-			/*headers: {  
-				'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'  
-			},*/
-			body: data
+		axios({
+			method: 'post',
+			url: path,
+			data: data
 		})
 		.then(resp => {
 			return resp.json();
@@ -165,7 +164,7 @@ export function getData(eventId){
 			});
 
 			dispatch(loading(true));
-			fetch(path)
+			axios.get(path)
 			.then(resp => {
 				return resp.json();
 			})
@@ -195,7 +194,10 @@ export function getData(eventId){
 			});
 
 			dispatch(loading(true));
-			fetch(path, { method: 'POST' })
+			axios({
+				method: 'post',
+				url: path
+			})
 			.then(resp => {
 				return resp.json();
 			})
