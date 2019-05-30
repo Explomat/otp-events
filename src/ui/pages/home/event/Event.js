@@ -38,7 +38,7 @@ class Event extends Component {
 			})
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		}).then(data => {
 			self.setState({
 				like_count: data.count,

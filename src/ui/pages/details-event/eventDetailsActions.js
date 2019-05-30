@@ -35,7 +35,7 @@ export function getEventDetails(id){
 		dispatch(loading(true));
 		axios.get(path)
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
@@ -83,7 +83,7 @@ export function resolveEvent(){
 			})
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
@@ -124,7 +124,7 @@ export function completeEvent(){
 			})
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
@@ -164,7 +164,7 @@ export function rejectEvent(){
 			})
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
@@ -204,7 +204,7 @@ export function respondParticipiant() {
 			})
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
@@ -240,7 +240,7 @@ export function refuseParticipiant() {
 			})
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
@@ -278,7 +278,7 @@ export function setParticipiantStatus(userId, isConfirm){
 			})
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
@@ -328,7 +328,7 @@ export function removeComment(eventId, commentId){
 			})
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
@@ -376,7 +376,7 @@ export function addComment(eventId, message) {
 			})
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
@@ -419,7 +419,7 @@ export function editComment(eventId, commentId, message) {
 			})
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){

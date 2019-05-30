@@ -136,7 +136,7 @@ export function saveEvent(form, history){
 			data: data
 		})
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
@@ -166,7 +166,7 @@ export function getData(eventId){
 			dispatch(loading(true));
 			axios.get(path)
 			.then(resp => {
-				return resp.json();
+				return resp.data;
 			})
 			.then(data => {
 				if (data.error){
@@ -199,7 +199,7 @@ export function getData(eventId){
 				url: path
 			})
 			.then(resp => {
-				return resp.json();
+				return resp.data;
 			})
 			.then(data => {
 				if (data.error){

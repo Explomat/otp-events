@@ -42,7 +42,7 @@ export function getInitialData(){
 
 		axios.get(path)
 		.then(resp => {
-			return resp.json();
+			return resp.data;
 		})
 		.then(data => {
 			if (data.error){
