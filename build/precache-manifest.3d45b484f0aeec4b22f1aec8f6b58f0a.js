@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/icons.faff9214.woff"
   },
   {
-    "revision": "3093d282b3b29392b5cc",
+    "revision": "0f950c5638f7f4831893",
     "url": "/otp/event/static/css/main.41eae838.chunk.css"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/icons.0ab54153.woff2"
   },
   {
-    "revision": "3093d282b3b29392b5cc",
-    "url": "/otp/event/static/js/main.c29c03e2.chunk.js"
+    "revision": "0f950c5638f7f4831893",
+    "url": "/otp/event/static/js/main.9afcb900.chunk.js"
   },
   {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
@@ -64,12 +64,12 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/icons.b87b9ba5.ttf"
   },
   {
-    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
-    "url": "/otp/event/static/media/icons.8e3c7f55.eot"
-  },
-  {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
     "url": "/otp/event/static/media/brand-icons.13db00b7.eot"
+  },
+  {
+    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
+    "url": "/otp/event/static/media/icons.8e3c7f55.eot"
   },
   {
     "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/otp/event/static/css/2.355bf921.chunk.css"
   },
   {
-    "revision": "a3892912816a6158a65025cfd417a768",
+    "revision": "ae390abd17030c242e2b7eef7d2f8201",
     "url": "/otp/event/index.html"
   }
 ];
