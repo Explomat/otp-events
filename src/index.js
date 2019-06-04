@@ -18,7 +18,7 @@ const store = configureStore();
 
 const render = () => (
 	<Provider store={store}>
-		<Router>
+		<Router basename='/home' hashType='noslash'>
 			<App />
 		</Router>
 	</Provider>
