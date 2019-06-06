@@ -121,7 +121,7 @@ class EventDetails extends Component {
 	}
 
 	_adminButtons(){
-		const { id, status_id, onResolveEvent, onCompleteEvent, history, user_role } = this.props;
+		const { id, status_id, onResolveEvent, onRejectEvent, onCompleteEvent, history, user_role } = this.props;
 		const buttons = [];
 		const isEventAdmin = user_role === 'event_admin';
 		const isAdmin = user_role === 'admin';
@@ -136,7 +136,10 @@ class EventDetails extends Component {
 							text='Cменить статус'
 						>
 							<Dropdown.Menu size='small'>
-		    					<Dropdown.Item text='Отменить' icon='close' onClick={this.handleTargetShowRejectedEvent}/>
+		    					{isAdmin ?
+		    						<Dropdown.Item text='Отменить' icon='close' onClick={this.handleTargetShowRejectedEvent}/> :
+		    						<Dropdown.Item text='Отменить' icon='close' onClick={onRejectEvent}/>
+		    					}
 		    					{status_id === 'plan' && <Dropdown.Item icon='minus' text='Завершить' onClick={onCompleteEvent}/>}
 		    				</Dropdown.Menu>
 		    			</Dropdown>
