@@ -28,7 +28,8 @@ import {
 	Dimmer,
 	Loader,
 	Dropdown,
-	Label
+	Label,
+	Modal
 } from 'semantic-ui-react';
 import formatDate from '../../utils/formatDate';
 import toBoolean from '../../utils/toBoolean';
@@ -43,8 +44,11 @@ class EventDetails extends Component {
 
 		this.state = {
 			comment: '',
-			isEditCommentNow: false
+			isEditCommentNow: false,
+			isShowRejectedModal: false
 		}
+
+		this.textAreaRef = React.createRef();
 
 		this.handleChangeNewComment = this.handleChangeNewComment.bind(this);
 		this.handleSubmitNewComment = this.handleSubmitNewComment.bind(this);
@@ -52,6 +56,20 @@ class EventDetails extends Component {
 		this.handleSubmitComment = this.handleSubmitComment.bind(this);
 		this.handeShowEditCommentForm = this.handeShowEditCommentForm.bind(this);
 		this.handleCancelEditComment = this.handleCancelEditComment.bind(this);
+		this.handleTargetShowRejectedEvent = this.handleTargetShowRejectedEvent.bind(this);
+		this.handleRejectEvent = this.handleRejectEvent.bind(this);
+	}
+
+	handleRejectEvent(){
+		this.handleTargetShowRejectedEvent();
+		const node = this.textAreaRef.current;
+		this.props.onRejectEvent(node.value);
+	}
+
+	handleTargetShowRejectedEvent(){
+		this.setState({
+			isShowRejectedModal: !this.state.isShowRejectedModal
+		});
 	}
 
 	handleChangeNewComment(e, { name, value }) {
@@ -103,7 +121,7 @@ class EventDetails extends Component {
 	}
 
 	_adminButtons(){
-		const { id, status_id, onResolveEvent, onRejectEvent, onCompleteEvent, history, user_role } = this.props;
+		const { id, status_id, onResolveEvent, onCompleteEvent, history, user_role } = this.props;
 		const buttons = [];
 		const isEventAdmin = user_role === 'event_admin';
 		const isAdmin = user_role === 'admin';
@@ -118,7 +136,7 @@ class EventDetails extends Component {
 							text='Cменить статус'
 						>
 							<Dropdown.Menu size='small'>
-		    					<Dropdown.Item text='Отменить' icon='close' onClick={onRejectEvent}/>
+		    					<Dropdown.Item text='Отменить' icon='close' onClick={this.handleTargetShowRejectedEvent}/>
 		    					{status_id === 'plan' && <Dropdown.Item icon='minus' text='Завершить' onClick={onCompleteEvent}/>}
 		    				</Dropdown.Menu>
 		    			</Dropdown>
@@ -189,7 +207,7 @@ class EventDetails extends Component {
 			onRespondParticipiant,
 			onRefuseParticipiant
 		} = this.props;
-		const { comment, isEditCommentNow } = this.state;
+		const { comment, isEditCommentNow, isShowRejectedModal } = this.state;
 
 		const styles = img ? { backgroundImage: `url(${img})` } : {};
 
@@ -407,6 +425,27 @@ class EventDetails extends Component {
 						</Grid.Row>
 					</Grid>
 				</Segment>
+				{isShowRejectedModal && <Modal
+					size='small'
+					open
+					closeIcon
+					onClose={this.handleTargetShowRejectedEvent}
+					style={{
+						position: 'relative'
+					}}
+				>
+					<Modal.Header>Отмена мероприятия</Modal.Header>
+					<Modal.Content>
+						<Modal.Description>
+							<textarea rows={4} ref={this.textAreaRef} className='event-details__reject-event-textarea' placeholder='Опишите причину отмены' />
+						</Modal.Description>
+					</Modal.Content>
+					<Modal.Actions>
+						<Button primary onClick={this.handleRejectEvent}>
+							Отменить
+						</Button>
+					</Modal.Actions>
+				</Modal>}
 			</div>
 		);
 	}
@@ -428,7 +467,7 @@ const mapDispatchProps = (dispatch, ownProps) => {
 		onRespondParticipiant: () => dispatch(respondParticipiant()),
 		onRefuseParticipiant: () => dispatch(refuseParticipiant()),
 		onResolveEvent: () => dispatch(resolveEvent()),
-		onRejectEvent: () => dispatch(rejectEvent()),
+		onRejectEvent: (value) => dispatch(rejectEvent(value)),
 		onCompleteEvent: () => dispatch(completeEvent())
 	}
 }

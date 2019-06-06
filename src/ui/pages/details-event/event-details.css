@@ -37,3 +37,9 @@
 	font-weight: 300;
 	font-size: 15px;
 }
+
+.event-details__reject-event-textarea {
+	width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+}

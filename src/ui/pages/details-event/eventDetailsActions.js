@@ -147,7 +147,7 @@ export function completeEvent(){
 	}
 }
 
-export function rejectEvent(){
+export function rejectEvent(value){
 	return (dispatch, getState) => {
 		const { eventDetails } = getState();
 
@@ -160,7 +160,8 @@ export function rejectEvent(){
 			method: 'post',
 			url: path,
 			data: JSON.stringify({
-				id: eventDetails.id
+				id: eventDetails.id,
+				value: value
 			})
 		})
 		.then(resp => {
