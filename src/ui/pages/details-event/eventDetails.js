@@ -45,10 +45,9 @@ class EventDetails extends Component {
 		this.state = {
 			comment: '',
 			isEditCommentNow: false,
-			isShowRejectedModal: false
+			isShowRejectedModal: false,
+			rejectReason: ''
 		}
-
-		this.textAreaRef = React.createRef();
 
 		this.handleChangeNewComment = this.handleChangeNewComment.bind(this);
 		this.handleSubmitNewComment = this.handleSubmitNewComment.bind(this);
@@ -58,12 +57,18 @@ class EventDetails extends Component {
 		this.handleCancelEditComment = this.handleCancelEditComment.bind(this);
 		this.handleTargetShowRejectedEvent = this.handleTargetShowRejectedEvent.bind(this);
 		this.handleRejectEvent = this.handleRejectEvent.bind(this);
+		this.handleChangeRejectReason = this.handleChangeRejectReason.bind(this);
+	}
+
+	handleChangeRejectReason(e) {
+		this.setState({
+			rejectReason: e.target.value
+		});
 	}
 
 	handleRejectEvent(){
 		this.handleTargetShowRejectedEvent();
-		const node = this.textAreaRef.current;
-		this.props.onRejectEvent(node.value);
+		this.props.onRejectEvent(this.state.rejectReason);
 	}
 
 	handleTargetShowRejectedEvent(){
@@ -138,7 +143,7 @@ class EventDetails extends Component {
 							<Dropdown.Menu size='small'>
 		    					{isAdmin ?
 		    						<Dropdown.Item text='Отменить' icon='close' onClick={this.handleTargetShowRejectedEvent}/> :
-		    						<Dropdown.Item text='Отменить' icon='close' onClick={onRejectEvent}/>
+		    						<Dropdown.Item text='Отменить' icon='close' onClick={() => onRejectEvent('')}/>
 		    					}
 		    					{status_id === 'plan' && <Dropdown.Item icon='minus' text='Завершить' onClick={onCompleteEvent}/>}
 		    				</Dropdown.Menu>
@@ -210,7 +215,7 @@ class EventDetails extends Component {
 			onRespondParticipiant,
 			onRefuseParticipiant
 		} = this.props;
-		const { comment, isEditCommentNow, isShowRejectedModal } = this.state;
+		const { comment, isEditCommentNow, isShowRejectedModal, rejectReason } = this.state;
 
 		const styles = img ? { backgroundImage: `url(${img})` } : {};
 
@@ -440,11 +445,16 @@ class EventDetails extends Component {
 					<Modal.Header>Отмена мероприятия</Modal.Header>
 					<Modal.Content>
 						<Modal.Description>
-							<textarea rows={4} ref={this.textAreaRef} className='event-details__reject-event-textarea' placeholder='Опишите причину отмены' />
+							<textarea
+								rows={4}
+								className='event-details__reject-event-textarea'
+								placeholder='Опишите причину отмены'
+								onChange={this.handleChangeRejectReason}
+							/>
 						</Modal.Description>
 					</Modal.Content>
 					<Modal.Actions>
-						<Button primary onClick={this.handleRejectEvent}>
+						<Button disabled={rejectReason.trim() === ''} primary onClick={this.handleRejectEvent}>
 							Отменить
 						</Button>
 					</Modal.Actions>

@@ -6,7 +6,7 @@ const events = [
 	{
 		"id": "6668962976716051403",
 		"cur_user_id": "6148914691236517121",
-		"user_role": "event_admin",
+		"user_role": "admin",
 		"title": "Речная прогулка по Москве реке",
 		"status_name": "Плнируется",
 		"status_id": "plan",
