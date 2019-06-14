@@ -274,13 +274,13 @@ class EventDetails extends Component {
 										</Card.Description>
 									</Card.Content>
 									<Card.Content extra>
-									{cost ? (
+									{cost != 0 ? (
 											<span>
 												<Icon name='ruble sign' color='grey'/>
 												{cost}
 											</span>
 										) : (
-										<span>Стоимость не указана</span>
+										<span>Бесплатно</span>
 									)}
 									{status_id === 'plan' && 
 										(find(collaborators, { id: cur_user_id }) ?
@@ -295,7 +295,7 @@ class EventDetails extends Component {
 													Отказаться
 												</Button>
 											) : (
-											 	<span>{(collaborators.length < max_person_count || max_person_count === 0) && <Button
+											 	<span>{(collaborators.length < parseInt(max_person_count, 10) || max_person_count == 0) && <Button
 													floated='right'
 													size='tiny'
 													basic
@@ -311,7 +311,11 @@ class EventDetails extends Component {
 								</Card>
 							</Grid.Column>
 							<Grid.Column width={8}>
-								<Header as='h2' dividing>Участники ({collaborators.length} / {max_person_count})</Header>
+								<Header as='h2' dividing>Участники {
+									max_person_count == 0 ? 'Без ограничения' :
+									`${collaborators.length} '/' ${max_person_count}`
+								}
+								</Header>
 								<List divided verticalAlign='middle'>
 									{
 										collaborators.map((c, index) => (
