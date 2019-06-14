@@ -420,7 +420,7 @@ class EventDetails extends Component {
 										))
 									}
 
-									{!isEditCommentNow && <Form reply onSubmit={this.handleSubmitNewComment}>
+									{!isEditCommentNow && (status_id !== 'cancel' && status_id !== 'project') && <Form reply onSubmit={this.handleSubmitNewComment}>
 										<Form.TextArea name='comment' value={comment} onChange={this.handleChangeNewComment}/>
 										<Button
 											size='tiny'
