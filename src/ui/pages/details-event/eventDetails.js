@@ -312,8 +312,8 @@ class EventDetails extends Component {
 							</Grid.Column>
 							<Grid.Column width={8}>
 								<Header as='h2' dividing>Участники {
-									max_person_count == 0 ? 'Без ограничения' :
-									`${collaborators.length} '/' ${max_person_count}`
+									max_person_count == 0 ? ` (${collaborators.length})` :
+									`${collaborators.length} / ${max_person_count}`
 								}
 								</Header>
 								<List divided verticalAlign='middle'>
