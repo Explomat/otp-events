@@ -16,7 +16,7 @@ function loading(isLoading){
 }
 
 function isFirstVisit(){
-	const _storage = window.sessionStorage || window.localStorage;
+	const _storage = window.localStorage;
 	if (!_storage) {
 		throw new Error('Local storage not supported in your browser!');
 	}

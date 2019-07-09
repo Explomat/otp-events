@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/icons.faff9214.woff"
   },
   {
-    "revision": "5c802d666abf9372ce0a",
-    "url": "/otp/event/static/css/main.6d084822.chunk.css"
+    "revision": "0961f38ed17eeeafb2b7",
+    "url": "/otp/event/static/css/main.e1599f4e.chunk.css"
   },
   {
     "revision": "462f759dca8c4513397d",
@@ -24,12 +24,12 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/material.font.11db2e84.woff2"
   },
   {
-    "revision": "cd6c777f1945164224dee082abaea03a",
-    "url": "/otp/event/static/media/outline-icons.cd6c777f.woff2"
-  },
-  {
     "revision": "ef60a4f6c25ef7f39f2d25a748dbecfe",
     "url": "/otp/event/static/media/outline-icons.ef60a4f6.woff"
+  },
+  {
+    "revision": "cd6c777f1945164224dee082abaea03a",
+    "url": "/otp/event/static/media/outline-icons.cd6c777f.woff2"
   },
   {
     "revision": "701ae6abd4719e9c2ada3535a497b341",
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/icons.0ab54153.woff2"
   },
   {
-    "revision": "5c802d666abf9372ce0a",
-    "url": "/otp/event/static/js/main.ab4b58dc.chunk.js"
+    "revision": "0961f38ed17eeeafb2b7",
+    "url": "/otp/event/static/js/main.a868fa45.chunk.js"
   },
   {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/otp/event/static/css/2.acec2701.chunk.css"
   },
   {
-    "revision": "7cf1f3fef38b25348a59305242c546ed",
+    "revision": "42f545939d252403cfc5c2dcc5f91fda",
     "url": "/otp/event/index.html"
   }
 ];
