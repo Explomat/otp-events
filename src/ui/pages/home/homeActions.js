@@ -15,6 +15,22 @@ function loading(isLoading){
 	}
 }
 
+function isFirstVisit(){
+	const _storage = window.sessionStorage || window.localStorage;
+	if (!_storage) {
+		throw new Error('Local storage not supported in your browser!');
+	}
+
+	const key = 'isFirstVisit';
+	const d = _storage.getItem(key);
+	if (d === null){
+		_storage.setItem(key, false);
+		return true;
+	}
+
+	return false;
+}
+
 export function getInitialData(){
 	return (dispatch, getState) => {
 
@@ -49,11 +65,40 @@ export function getInitialData(){
 				//dispatch(error(data.error));
 				console.log(data.error);
 			} else {
-				dispatch(loading(false));
-				dispatch({
-					type: constants.GET_INITIAL_DATA_SUCCESS,
-					payload: data
-				});
+				const isFV = isFirstVisit();
+				if (isFV) {
+					axios.get(url.createPath({
+						server_name: 'events',
+						action_name: 'Instruction'
+					}))
+					.then(resp => {
+						return resp.data;
+					})
+					.then(dataInstr => {
+						 if (dataInstr.error){
+							console.log(dataInstr.error);
+						} else {
+							dispatch(loading(false));
+							dispatch({
+								type: constants.GET_INITIAL_DATA_SUCCESS,
+								payload: {
+									isFirstVisit: isFV,
+									instruction: dataInstr.instruction,
+									...data
+								}
+							});
+						}
+					});
+				} else {
+					dispatch(loading(false));
+					dispatch({
+						type: constants.GET_INITIAL_DATA_SUCCESS,
+						payload: {
+							isFirstVisit: isFV,
+							...data
+						}
+					});
+				}
 			}
 		}).catch(e => {
 			//dispatch(error(e.message));

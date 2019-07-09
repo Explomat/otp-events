@@ -369,7 +369,7 @@ class EventDetails extends Component {
 												<Comment>
 													<Comment.Avatar src={c.avatar} />
 													<Comment.Content>
-														<Comment.Author href='/test' as='a'>{c.user_fullname}</Comment.Author>
+														<Comment.Author href={`/view_doc.html?mode=collaborator&object_id=${c.user_id}`} as='a'>{c.user_fullname}</Comment.Author>
 														<Comment.Metadata>
 															<div>{formatDate(new Date(c.date))}</div>
 														</Comment.Metadata>

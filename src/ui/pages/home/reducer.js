@@ -83,13 +83,29 @@ function subjectsReducer(state=[], action){
 	}
 }
 
+function storageReducer(state={
+	isFirstVisit: false
+}, action){
+	switch(action.type) {
+		case constants.GET_INITIAL_DATA_SUCCESS: {
+			const { isFirstVisit } = action.payload;
+			return {
+				isFirstVisit
+			}
+		}
+
+		default: return state;
+	}
+}
+
 function userReducer(state={}, action){
 	switch(action.type) {
 		case constants.GET_INITIAL_DATA_SUCCESS: {
-			const { cur_user_id, user_role } = action.payload;
+			const { cur_user_id, user_role, instruction } = action.payload;
 			return {
 				cur_user_id,
-				user_role
+				user_role,
+				instruction
 			}
 		}
 
@@ -120,6 +136,7 @@ function loadingReducer(state = false, action){
 }
 
 const reducer = combineReducers({
+	storage: storageReducer,
 	user: userReducer,
 	cities: citiesReducer,
 	affilations: affilationsReducer,
