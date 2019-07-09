@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/outline-icons.701ae6ab.eot"
   },
   {
-    "revision": "4fc30b9d1c841edf181e",
-    "url": "/otp/event/static/css/main.4fc80ed5.chunk.css"
+    "revision": "6b68cfc6300cce431a45",
+    "url": "/otp/event/static/css/main.1191232c.chunk.css"
   },
   {
     "revision": "462f759dca8c4513397d",
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/otp/event/static/media/icons.962a1bf3.svg"
   },
   {
-    "revision": "4fc30b9d1c841edf181e",
-    "url": "/otp/event/static/js/main.96e978e8.chunk.js"
+    "revision": "6b68cfc6300cce431a45",
+    "url": "/otp/event/static/js/main.690b2126.chunk.js"
   },
   {
     "revision": "cd6c777f1945164224dee082abaea03a",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/otp/event/static/css/2.667876fe.chunk.css"
   },
   {
-    "revision": "0448e3d5d4a5fc612d66df7c0d698c39",
+    "revision": "7bd1f1a5c22749c2328c00a4d6a93e09",
     "url": "/otp/event/index.html"
   }
 ];

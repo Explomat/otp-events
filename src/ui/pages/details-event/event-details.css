@@ -44,3 +44,15 @@
     padding: 8px;
     border-radius: 4px;
 }
+
+.event-details__change-status{
+	z-index: 1000;
+}
+
+.event-details__resolve{
+	z-index: 1000;
+}
+
+.event-details__reject{
+	z-index: 1000;
+}

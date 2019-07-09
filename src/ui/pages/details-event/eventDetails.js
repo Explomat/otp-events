@@ -134,8 +134,9 @@ class EventDetails extends Component {
 		if (isAdmin || isEventAdmin){
 			if (status_id === 'project' || status_id === 'plan'){
 				buttons.push(
-					<Button.Group color='teal' className='event-details__reject' key={2}>
+					<Button.Group color='teal' key={2}>
 						<Dropdown
+							className='event-details__change-status'
 							as={Button}
 							floating
 							text='Cменить статус'
